@@ -1,0 +1,26 @@
+Index: .idea/shelf/unnamed3.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><changelist name=\"unnamed3\" date=\"1565195366674\" recycled=\"false\">\r\n  <option name=\"PATH\" value=\"$PROJECT_DIR$/.idea/shelf/unnamed3/shelved.patch\" />\r\n  <option name=\"DESCRIPTION\" value=\"\" />\r\n</changelist>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/shelf/unnamed3.xml	(revision 536eb844af6a93f2c2186005f8dab68ff3294367)
++++ .idea/shelf/unnamed3.xml	(date 1565208722326)
+Index: .idea/libraries/lib.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><component name=\"libraryTable\">\r\n  <library name=\"lib\">\r\n    <CLASSES>\r\n      <root url=\"jar://$PROJECT_DIR$/lib/hamcrest-core-1.3.jar!/\" />\r\n      <root url=\"jar://$PROJECT_DIR$/lib/junit-4.12.jar!/\" />\r\n    </CLASSES>\r\n    <JAVADOC />\r\n    <SOURCES />\r\n  </library>\r\n</component>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/libraries/lib.xml	(revision 536eb844af6a93f2c2186005f8dab68ff3294367)
++++ .idea/libraries/lib.xml	(date 1565211382226)
+@@ -2,7 +2,6 @@
+   <library name="lib">
+     <CLASSES>
+       <root url="jar://$PROJECT_DIR$/lib/hamcrest-core-1.3.jar!/" />
+-      <root url="jar://$PROJECT_DIR$/lib/junit-4.12.jar!/" />
+     </CLASSES>
+     <JAVADOC />
+     <SOURCES />

@@ -1,0 +1,613 @@
+Index: src/main/controller/Weather.java
+===================================================================
+--- src/main/controller/Weather.java	(revision 533b47a79fbc89afe00ae68754c0f9c602e93be4)
++++ src/main/controller/Weather.java	(revision 533b47a79fbc89afe00ae68754c0f9c602e93be4)
+@@ -1,7 +0,0 @@
+-package controller;
+-
+-public interface Weather {
+-    public void getMain();
+-
+-    public void getWeather();
+-}
+Index: src/main/controller/WeatherAdapter.java
+===================================================================
+--- src/main/controller/WeatherAdapter.java	(revision 533b47a79fbc89afe00ae68754c0f9c602e93be4)
++++ src/main/controller/WeatherAdapter.java	(revision 533b47a79fbc89afe00ae68754c0f9c602e93be4)
+@@ -1,13 +0,0 @@
+-package controller;
+-
+-public class WeatherAdapter implements Weather {
+-    @Override
+-    public void getMain() {
+-
+-    }
+-
+-    @Override
+-    public void getWeather() {
+-
+-    }
+-}
+Index: src/main/model/runes/Runes.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package model.runes;\r\n\r\npublic class Runes {\r\n    public String itemName;\r\n    public String type;\r\n    public String classification;\r\n    public String masterwork;\r\n\r\n    public Rune r1;\r\n    public Rune r2;\r\n    public Rune r3;\r\n    public String image;\r\n\r\n    public Runes(String name, String type, String classification, String masterwork) {\r\n        this.itemName = name;\r\n        this.type = type;\r\n        this.classification = classification;\r\n        this.masterwork = masterwork;\r\n    }\r\n\r\n    public Runes(String name, Rune r1, Rune r2, Rune r3, String image) {\r\n        this.itemName = name;\r\n        this.r1 = r1;\r\n        this.r2 = r2;\r\n        this.r3 = r3;\r\n        this.image = image;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/model/runes/Runes.java	(revision 533b47a79fbc89afe00ae68754c0f9c602e93be4)
++++ src/main/model/runes/Runes.java	(date 1565149424174)
+@@ -2,22 +2,11 @@
+ 
+ public class Runes {
+     public String itemName;
+-    public String type;
+-    public String classification;
+-    public String masterwork;
+-
+     public Rune r1;
+     public Rune r2;
+     public Rune r3;
+     public String image;
+ 
+-    public Runes(String name, String type, String classification, String masterwork) {
+-        this.itemName = name;
+-        this.type = type;
+-        this.classification = classification;
+-        this.masterwork = masterwork;
+-    }
+-
+     public Runes(String name, Rune r1, Rune r2, Rune r3, String image) {
+         this.itemName = name;
+         this.r1 = r1;
+Index: src/main/model/chalice/Chalice.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package model.chalice;\r\n\r\nimport model.runes.Rune;\r\nimport model.runes.Runes;\r\nimport ui.JavaFXView;\r\n\r\nimport java.util.Observable;\r\nimport java.util.Observer;\r\n\r\npublic class Chalice implements Observer {\r\n    private Runes item;\r\n    private Rune runeTop;\r\n    private Rune runeLeft;\r\n    private Rune runeRight;\r\n\r\n    public Runes getItem() {\r\n        return item;\r\n    }\r\n\r\n    public Rune getRuneTop() {\r\n        return runeTop;\r\n    }\r\n\r\n    public Rune getRuneLeft() {\r\n        return runeLeft;\r\n    }\r\n\r\n    public Rune getRuneRight() {\r\n        return runeRight;\r\n    }\r\n\r\n    @Override\r\n    public void update(Observable o, Object arg) {\r\n        JavaFXView items = (JavaFXView) arg;\r\n        Runes item = items.item;\r\n        items.numItemCrafted += 1;\r\n        System.out.println(item.itemName);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/model/chalice/Chalice.java	(revision 533b47a79fbc89afe00ae68754c0f9c602e93be4)
++++ src/main/model/chalice/Chalice.java	(date 1565149498460)
+@@ -8,27 +8,6 @@
+ import java.util.Observer;
+ 
+ public class Chalice implements Observer {
+-    private Runes item;
+-    private Rune runeTop;
+-    private Rune runeLeft;
+-    private Rune runeRight;
+-
+-    public Runes getItem() {
+-        return item;
+-    }
+-
+-    public Rune getRuneTop() {
+-        return runeTop;
+-    }
+-
+-    public Rune getRuneLeft() {
+-        return runeLeft;
+-    }
+-
+-    public Rune getRuneRight() {
+-        return runeRight;
+-    }
+-
+     @Override
+     public void update(Observable o, Object arg) {
+         JavaFXView items = (JavaFXView) arg;
+Index: src/main/model/weapons/energy/Energy.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package model.weapons.energy;\r\n\r\nimport model.runes.Runes;\r\nimport model.weapons.energy.fusionrifles.ErentilFR4;\r\nimport model.weapons.energy.fusionrifles.MainIngredient;\r\nimport model.weapons.energy.fusionrifles.ProeliumFR3;\r\nimport model.weapons.energy.fusionrifles.TheEpicurean;\r\nimport model.weapons.energy.handcannons.Trust;\r\nimport model.weapons.energy.handcannons.WakingVigil;\r\nimport model.weapons.energy.shotguns.BadLander;\r\nimport model.weapons.energy.sidearms.AnonymousAutumn;\r\nimport model.weapons.energy.sidearms.Drang;\r\nimport model.weapons.energy.sidearms.LastDance;\r\nimport model.weapons.energy.snipers.Beloved;\r\nimport model.weapons.energy.snipers.FateCriesFoul;\r\nimport model.weapons.energy.snipers.TwilightOath;\r\nimport model.weapons.energy.submachineguns.BadReputation;\r\nimport model.weapons.energy.submachineguns.CalusMiniTool;\r\n\r\nimport java.util.HashMap;\r\n\r\npublic class Energy {\r\n    private HashMap<String, Runes> fusionRifles;\r\n    private HashMap<String, Runes> shotguns;\r\n    private HashMap<String, Runes> sideArms;\r\n    private HashMap<String, Runes> subMachineGuns;\r\n    private HashMap<String, Runes> snipers;\r\n    private HashMap<String, Runes> handCannons;\r\n\r\n    public Energy() {\r\n        fusionRifles = new HashMap<>();\r\n        shotguns = new HashMap<>();\r\n        sideArms = new HashMap<>();\r\n        subMachineGuns = new HashMap<>();\r\n        snipers = new HashMap<>();\r\n        handCannons = new HashMap<>();\r\n\r\n        loadFusionRifles();\r\n        loadHandCannons();\r\n        loadShotguns();\r\n        loadSideArms();\r\n        loadSnipers();\r\n        loadSubMachineGuns();\r\n    }\r\n\r\n\r\n    private void loadFusionRifles() {\r\n        ErentilFR4 fr4 = new ErentilFR4();\r\n        MainIngredient mi = new MainIngredient();\r\n        ProeliumFR3 fr3 = new ProeliumFR3();\r\n        TheEpicurean te = new TheEpicurean();\r\n\r\n        this.fusionRifles.put(fr4.getKey(), fr4.getCombination());\r\n        this.fusionRifles.put(fr3.getKey(), fr3.getCombination());\r\n        this.fusionRifles.put(mi.getKey(), mi.getCombination());\r\n        this.fusionRifles.put(te.getKey(), te.getCombination());\r\n    }\r\n\r\n    private void loadHandCannons() {\r\n        Trust trust = new Trust();\r\n        WakingVigil wv = new WakingVigil();\r\n\r\n        this.handCannons.put(trust.getKey(), trust.getCombination());\r\n        this.handCannons.put(wv.getKey(), wv.getCombination());\r\n    }\r\n\r\n    private void loadShotguns() {\r\n        BadLander badLander = new BadLander();\r\n\r\n        this.shotguns.put(badLander.getKey(), badLander.getCombination());\r\n    }\r\n\r\n    private void loadSideArms() {\r\n        AnonymousAutumn aa = new AnonymousAutumn();\r\n        Drang drang = new Drang();\r\n        LastDance ld = new LastDance();\r\n\r\n        this.sideArms.put(aa.getKey(), aa.getCombination());\r\n        this.sideArms.put(drang.getKey(), drang.getCombination());\r\n        this.sideArms.put(ld.getKey(), ld.getCombination());\r\n    }\r\n\r\n    private void loadSnipers() {\r\n        Beloved beloved = new Beloved();\r\n        TwilightOath to = new TwilightOath();\r\n        FateCriesFoul fcf = new FateCriesFoul();\r\n\r\n        this.snipers.put(beloved.getKey(), beloved.getCombination());\r\n        this.snipers.put(to.getKey(), to.getCombination());\r\n        this.snipers.put(fcf.getKey(), fcf.getCombination());\r\n    }\r\n\r\n    private void loadSubMachineGuns() {\r\n        BadReputation br = new BadReputation();\r\n        CalusMiniTool cmt = new CalusMiniTool();\r\n\r\n        this.subMachineGuns.put(br.getKey(), br.getCombination());\r\n        this.subMachineGuns.put(cmt.getKey(), cmt.getCombination());\r\n    }\r\n\r\n    public Runes selectHandCannon(String weapon) {\r\n        return this.handCannons.get(weapon);\r\n    }\r\n\r\n    public Runes selectSubMachineGun(String weapon) {\r\n        return subMachineGuns.get(weapon);\r\n    }\r\n\r\n    public Runes selectSniper(String weapon) {\r\n        return snipers.get(weapon);\r\n    }\r\n\r\n    public Runes selectShotGun(String weapon) {\r\n        return shotguns.get(weapon);\r\n    }\r\n\r\n    public Runes selectFusionRifle(String weapon) {\r\n        return fusionRifles.get(weapon);\r\n    }\r\n\r\n    public Runes selectSideArm(String weapon) {\r\n        return sideArms.get(weapon);\r\n    }\r\n\r\n    public HashMap<String, Runes> getFusionRifles() {\r\n        return fusionRifles;\r\n    }\r\n\r\n    public HashMap<String, Runes> getShotguns() {\r\n        return shotguns;\r\n    }\r\n\r\n    public HashMap<String, Runes> getSideArms() {\r\n        return sideArms;\r\n    }\r\n\r\n    public HashMap<String, Runes> getSubMachineGuns() {\r\n        return subMachineGuns;\r\n    }\r\n\r\n    public HashMap<String, Runes> getSnipers() {\r\n        return snipers;\r\n    }\r\n\r\n    public HashMap<String, Runes> getHandCannons() {\r\n        return handCannons;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/model/weapons/energy/Energy.java	(revision 533b47a79fbc89afe00ae68754c0f9c602e93be4)
++++ src/main/model/weapons/energy/Energy.java	(date 1565149403832)
+@@ -121,28 +121,4 @@
+     public Runes selectSideArm(String weapon) {
+         return sideArms.get(weapon);
+     }
+-
+-    public HashMap<String, Runes> getFusionRifles() {
+-        return fusionRifles;
+-    }
+-
+-    public HashMap<String, Runes> getShotguns() {
+-        return shotguns;
+-    }
+-
+-    public HashMap<String, Runes> getSideArms() {
+-        return sideArms;
+-    }
+-
+-    public HashMap<String, Runes> getSubMachineGuns() {
+-        return subMachineGuns;
+-    }
+-
+-    public HashMap<String, Runes> getSnipers() {
+-        return snipers;
+-    }
+-
+-    public HashMap<String, Runes> getHandCannons() {
+-        return handCannons;
+-    }
+ }
+Index: src/main/controller/WeaponEnergyController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package controller;\r\n\r\nimport exceptions.*;\r\nimport model.runes.Runes;\r\nimport model.weapons.energy.Energy;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class WeaponEnergyController {\r\n    private Energy energy;\r\n\r\n    public WeaponEnergyController() {\r\n        energy = new Energy();\r\n    }\r\n\r\n    public List<String> getListOfKeysHandCannons() {\r\n        return new ArrayList<String>(energy.getHandCannons().keySet());\r\n    }\r\n\r\n    public List<String> getListOfKeysSnipers() {\r\n        return new ArrayList<String>(energy.getSnipers().keySet());\r\n    }\r\n\r\n    public List<String> getListOfKeysShotguns() {\r\n        return new ArrayList<String>(energy.getShotguns().keySet());\r\n    }\r\n\r\n    public List<String> getListOfKeysSideArms() {\r\n        return new ArrayList<String>(energy.getSideArms().keySet());\r\n    }\r\n\r\n    public List<String> getListOfSMGs() {\r\n        return new ArrayList<String>(energy.getSubMachineGuns().keySet());\r\n    }\r\n\r\n    public List<String> getListOfFusionRifles() {\r\n        return  new ArrayList<String>(energy.getFusionRifles().keySet());\r\n    }\r\n\r\n    public Runes getHandCannon(String item) throws WeaponNotFoundException {\r\n        return checkIfFound(energy.selectHandCannon(item), \"handcannon\");\r\n    }\r\n\r\n    public Runes getSniper(String item) throws WeaponNotFoundException {\r\n        return checkIfFound(energy.selectSniper(item), \"sniper\");\r\n    }\r\n\r\n    public Runes getSideArm(String item) throws WeaponNotFoundException {\r\n        return checkIfFound(energy.selectSideArm(item), \"sidearm\");\r\n    }\r\n\r\n    public Runes getShotGun(String item) throws WeaponNotFoundException {\r\n        return checkIfFound(energy.selectShotGun(item), \"shotgun\");\r\n    }\r\n\r\n    public Runes getSMG(String item) throws WeaponNotFoundException {\r\n        return checkIfFound(energy.selectSubMachineGun(item), \"smg\");\r\n    }\r\n\r\n    public Runes getFusionRifle(String item) throws WeaponNotFoundException {\r\n        return checkIfFound(energy.selectFusionRifle(item), \"fusionrifle\");\r\n    }\r\n\r\n    private Runes checkIfFound(Runes item, String type) throws WeaponNotFoundException {\r\n        if (item == null) {\r\n            if (type.equals(\"smg\")) {\r\n                throw new SmgNotFound();\r\n            } else if (type.equals(\"handcannon\")) {\r\n                throw new HandCannonNotFound();\r\n            } else if (type.equals(\"sniper\")) {\r\n                throw new SniperNotFound();\r\n            } else if (type.equals(\"shotgun\")) {\r\n                throw new ShotgunNotFound();\r\n            } else if (type.equals(\"sidearm\")) {\r\n                throw new SideArmNotFound();\r\n            } else if (type.equals(\"fusionrifle\")) {\r\n                throw new FusionRifleNotFound();\r\n            }\r\n        }\r\n        return item;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/controller/WeaponEnergyController.java	(revision 533b47a79fbc89afe00ae68754c0f9c602e93be4)
++++ src/main/controller/WeaponEnergyController.java	(date 1565137233901)
+@@ -14,30 +14,6 @@
+         energy = new Energy();
+     }
+ 
+-    public List<String> getListOfKeysHandCannons() {
+-        return new ArrayList<String>(energy.getHandCannons().keySet());
+-    }
+-
+-    public List<String> getListOfKeysSnipers() {
+-        return new ArrayList<String>(energy.getSnipers().keySet());
+-    }
+-
+-    public List<String> getListOfKeysShotguns() {
+-        return new ArrayList<String>(energy.getShotguns().keySet());
+-    }
+-
+-    public List<String> getListOfKeysSideArms() {
+-        return new ArrayList<String>(energy.getSideArms().keySet());
+-    }
+-
+-    public List<String> getListOfSMGs() {
+-        return new ArrayList<String>(energy.getSubMachineGuns().keySet());
+-    }
+-
+-    public List<String> getListOfFusionRifles() {
+-        return  new ArrayList<String>(energy.getFusionRifles().keySet());
+-    }
+-
+     public Runes getHandCannon(String item) throws WeaponNotFoundException {
+         return checkIfFound(energy.selectHandCannon(item), "handcannon");
+     }
+Index: src/main/controller/WeaponKineticController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package controller;\r\n\r\nimport exceptions.*;\r\nimport model.runes.Runes;\r\nimport model.weapons.kinetic.Kinetic;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class WeaponKineticController {\r\n    private Kinetic kinetic;\r\n\r\n    public WeaponKineticController() {\r\n        kinetic = new Kinetic();\r\n    }\r\n\r\n    public List<String> getListOfKeysHandCannons() {\r\n        return new ArrayList<String>(kinetic.getHandCannons().keySet());\r\n    }\r\n\r\n    public List<String> getListOfKeysSnipers() {\r\n        return new ArrayList<String>(kinetic.getSnipers().keySet());\r\n    }\r\n\r\n    public List<String> getListOfKeysShotguns() {\r\n        return new ArrayList<String>(kinetic.getShotGuns().keySet());\r\n    }\r\n\r\n    public List<String> getListOfKeysSideArms() {\r\n        return new ArrayList<String>(kinetic.getSideArms().keySet());\r\n    }\r\n\r\n    public List<String> getListOfSMGs() {\r\n        return new ArrayList<String>(kinetic.getSMGs().keySet());\r\n    }\r\n\r\n    public Runes getHandCannon(String item) throws WeaponNotFoundException {\r\n        return checkIfFound(kinetic.selectHandCannon(item), \"handcannon\");\r\n    }\r\n\r\n    public Runes getSniper(String item) throws WeaponNotFoundException {\r\n        return checkIfFound(kinetic.selectSniper(item), \"sniper\");\r\n    }\r\n\r\n    public Runes getSideArm(String item) throws WeaponNotFoundException {\r\n        return checkIfFound(kinetic.selectSideArm(item), \"sidearm\");\r\n    }\r\n\r\n    public Runes getShotGun(String item) throws WeaponNotFoundException {\r\n        return checkIfFound(kinetic.selectShotGun(item), \"shotgun\");\r\n    }\r\n\r\n    public Runes getSMG(String item) throws WeaponNotFoundException {\r\n        return checkIfFound(kinetic.selectSubMachineGun(item), \"smg\");\r\n    }\r\n\r\n    private Runes checkIfFound(Runes item, String type) throws WeaponNotFoundException {\r\n        if (item == null) {\r\n            if (type.equals(\"smg\")) {\r\n                throw new SmgNotFound();\r\n            } else if (type.equals(\"handcannon\")) {\r\n                throw new HandCannonNotFound();\r\n            } else if (type.equals(\"sniper\")) {\r\n                throw new SniperNotFound();\r\n            } else if (type.equals(\"shotgun\")) {\r\n                throw new ShotgunNotFound();\r\n            } else if (type.equals(\"sidearm\")) {\r\n                throw new SideArmNotFound();\r\n            }\r\n        }\r\n        return item;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/controller/WeaponKineticController.java	(revision 533b47a79fbc89afe00ae68754c0f9c602e93be4)
++++ src/main/controller/WeaponKineticController.java	(date 1565137286356)
+@@ -14,26 +14,6 @@
+         kinetic = new Kinetic();
+     }
+ 
+-    public List<String> getListOfKeysHandCannons() {
+-        return new ArrayList<String>(kinetic.getHandCannons().keySet());
+-    }
+-
+-    public List<String> getListOfKeysSnipers() {
+-        return new ArrayList<String>(kinetic.getSnipers().keySet());
+-    }
+-
+-    public List<String> getListOfKeysShotguns() {
+-        return new ArrayList<String>(kinetic.getShotGuns().keySet());
+-    }
+-
+-    public List<String> getListOfKeysSideArms() {
+-        return new ArrayList<String>(kinetic.getSideArms().keySet());
+-    }
+-
+-    public List<String> getListOfSMGs() {
+-        return new ArrayList<String>(kinetic.getSMGs().keySet());
+-    }
+-
+     public Runes getHandCannon(String item) throws WeaponNotFoundException {
+         return checkIfFound(kinetic.selectHandCannon(item), "handcannon");
+     }
+Index: src/test/tests/InterfaceTests/SnipersTestSet.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package tests.InterfaceTests;\r\n\r\nimport model.runes.Runes;\r\nimport model.weapons.kinetic.KineticWeaponInterface;\r\nimport model.weapons.kinetic.snipers.DreadedVenture;\r\nimport org.junit.jupiter.api.BeforeEach;\r\nimport org.junit.jupiter.api.Test;\r\n\r\nimport static org.junit.jupiter.api.Assertions.assertEquals;\r\n\r\npublic class SnipersTestSet {\r\n    private KineticWeaponInterface dv;\r\n    private KineticWeaponInterface fcf;\r\n\r\n    @BeforeEach\r\n    void beforeEachTest() {\r\n        dv = new DreadedVenture();\r\n    }\r\n\r\n    @Test\r\n    void testGetKey(){\r\n        assertEquals(dv.getKey(), \"dreadedventure\");\r\n        assertEquals(fcf.getKey(), \"fatecriesfoul\");\r\n    }\r\n\r\n    @Test\r\n    void testGetName(){\r\n        assertEquals(dv.getName(), \"Dreaded Venture\");\r\n        assertEquals(fcf.getName(), \"Fate Cries Foul\");\r\n    }\r\n\r\n    @Test\r\n    void testGetCombination(){\r\n        Runes comboAus = dv.getCombination();\r\n        Runes comboTrust = fcf.getCombination();\r\n        assertEquals(comboAus.itemName, \"Dreaded Venture\");\r\n        assertEquals(comboTrust.itemName, \"Fate Cries Foul\");\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/test/tests/InterfaceTests/SnipersTestSet.java	(revision 533b47a79fbc89afe00ae68754c0f9c602e93be4)
++++ src/test/tests/InterfaceTests/SnipersTestSet.java	(date 1565149345783)
+@@ -10,7 +10,6 @@
+ 
+ public class SnipersTestSet {
+     private KineticWeaponInterface dv;
+-    private KineticWeaponInterface fcf;
+ 
+     @BeforeEach
+     void beforeEachTest() {
+@@ -20,20 +19,16 @@
+     @Test
+     void testGetKey(){
+         assertEquals(dv.getKey(), "dreadedventure");
+-        assertEquals(fcf.getKey(), "fatecriesfoul");
+     }
+ 
+     @Test
+     void testGetName(){
+         assertEquals(dv.getName(), "Dreaded Venture");
+-        assertEquals(fcf.getName(), "Fate Cries Foul");
+     }
+ 
+     @Test
+     void testGetCombination(){
+         Runes comboAus = dv.getCombination();
+-        Runes comboTrust = fcf.getCombination();
+         assertEquals(comboAus.itemName, "Dreaded Venture");
+-        assertEquals(comboTrust.itemName, "Fate Cries Foul");
+     }
+ }
+Index: src/main/model/weapons/heavy/Heavy.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package model.weapons.heavy;\r\n\r\nimport model.runes.Runes;\r\nimport model.weapons.heavy.lightmachineguns.FixedOdds;\r\nimport model.weapons.heavy.rocketlauncher.BadOmens;\r\nimport model.weapons.heavy.rocketlauncher.SleepLess;\r\nimport model.weapons.heavy.rocketlauncher.ZenobiaD;\r\n\r\nimport java.util.HashMap;\r\n\r\npublic class Heavy {\r\n    private HashMap<String, Runes> machineGuns;\r\n    private HashMap<String, Runes> rockets;\r\n\r\n    public Heavy() {\r\n        machineGuns = new HashMap<>();\r\n        rockets = new HashMap<>();\r\n\r\n        loadMachineGuns();\r\n        loadRockets();\r\n    }\r\n\r\n    private void loadMachineGuns() {\r\n        HeavyWeaponInterface fixedOdds = new FixedOdds();\r\n\r\n        machineGuns.put(fixedOdds.getKey(), fixedOdds.getRuneCombination());\r\n    }\r\n\r\n    private void loadRockets() {\r\n        HeavyWeaponInterface badOmens = new BadOmens();\r\n        HeavyWeaponInterface sleepLess = new SleepLess();\r\n        HeavyWeaponInterface zenobiaD = new ZenobiaD();\r\n\r\n        rockets.put(badOmens.getKey(), badOmens.getRuneCombination());\r\n        rockets.put(sleepLess.getKey(), sleepLess.getRuneCombination());\r\n        rockets.put(zenobiaD.getKey(), zenobiaD.getRuneCombination());\r\n    }\r\n\r\n    public Runes selectMachineGun(String weapon) {\r\n        return machineGuns.get(weapon);\r\n    }\r\n\r\n    public Runes selectRocket(String weapon) {\r\n        return rockets.get(weapon);\r\n    }\r\n\r\n    public HashMap<String, Runes> getMachineGuns() {\r\n        return machineGuns;\r\n    }\r\n\r\n    public HashMap<String, Runes> getRockets() {\r\n        return rockets;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/model/weapons/heavy/Heavy.java	(revision 533b47a79fbc89afe00ae68754c0f9c602e93be4)
++++ src/main/model/weapons/heavy/Heavy.java	(date 1565149396485)
+@@ -43,12 +43,4 @@
+     public Runes selectRocket(String weapon) {
+         return rockets.get(weapon);
+     }
+-
+-    public HashMap<String, Runes> getMachineGuns() {
+-        return machineGuns;
+-    }
+-
+-    public HashMap<String, Runes> getRockets() {
+-        return rockets;
+-    }
+ }
+Index: src/test/tests/ControllerTests/KineticControllerTestSet.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package tests.ControllerTests;\r\n\r\nimport controller.WeaponKineticController;\r\nimport exceptions.WeaponNotFoundException;\r\nimport org.junit.jupiter.api.BeforeEach;\r\nimport org.junit.jupiter.api.Test;\r\n\r\nimport static org.junit.jupiter.api.Assertions.assertEquals;\r\n\r\npublic class KineticControllerTestSet {\r\n    private WeaponKineticController wkc;\r\n\r\n    @BeforeEach\r\n    void beforeEachTest() {\r\n        wkc = new WeaponKineticController();\r\n    }\r\n\r\n    @Test\r\n    void testGetHC(){\r\n        assertEquals(2, wkc.getListOfKeysHandCannons().size());\r\n    }\r\n\r\n    @Test\r\n    void testGetSn(){\r\n        assertEquals(2, wkc.getListOfKeysSnipers().size());\r\n    }\r\n\r\n    @Test\r\n    void testGetSh(){\r\n        assertEquals(3, wkc.getListOfKeysShotguns().size());\r\n    }\r\n\r\n    @Test\r\n    void testGetSMG(){\r\n        assertEquals(2, wkc.getListOfSMGs().size());\r\n    }\r\n\r\n    @Test\r\n    void testGetSd(){\r\n        assertEquals(1, wkc.getListOfKeysSideArms().size());\r\n    }\r\n\r\n    @Test\r\n    void testGetSHC() throws WeaponNotFoundException {\r\n        assertEquals(\"Austringer\", wkc.getHandCannon(\"austringer\").itemName);\r\n    }\r\n\r\n    @Test\r\n    void testGetSSn() throws WeaponNotFoundException {\r\n        assertEquals(\"Dreaded Venture\", wkc.getSniper(\"dreadedventure\").itemName);\r\n    }\r\n\r\n    @Test\r\n    void testGetSSh() throws WeaponNotFoundException {\r\n        assertEquals(\"Dust Rock Blues\", wkc.getShotGun(\"dustrockblues\").itemName);\r\n    }\r\n\r\n    @Test\r\n    void testGetSSMG() throws WeaponNotFoundException {\r\n        assertEquals(\"Hard Truths\", wkc.getSMG(\"hardtruths\").itemName);\r\n    }\r\n\r\n    @Test\r\n    void testGetSSd() throws WeaponNotFoundException {\r\n        assertEquals(\"Smugglers Word\", wkc.getSideArm(\"smugglersword\").itemName);\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/test/tests/ControllerTests/KineticControllerTestSet.java	(revision 533b47a79fbc89afe00ae68754c0f9c602e93be4)
++++ src/test/tests/ControllerTests/KineticControllerTestSet.java	(date 1565137272052)
+@@ -15,31 +15,6 @@
+         wkc = new WeaponKineticController();
+     }
+ 
+-    @Test
+-    void testGetHC(){
+-        assertEquals(2, wkc.getListOfKeysHandCannons().size());
+-    }
+-
+-    @Test
+-    void testGetSn(){
+-        assertEquals(2, wkc.getListOfKeysSnipers().size());
+-    }
+-
+-    @Test
+-    void testGetSh(){
+-        assertEquals(3, wkc.getListOfKeysShotguns().size());
+-    }
+-
+-    @Test
+-    void testGetSMG(){
+-        assertEquals(2, wkc.getListOfSMGs().size());
+-    }
+-
+-    @Test
+-    void testGetSd(){
+-        assertEquals(1, wkc.getListOfKeysSideArms().size());
+-    }
+-
+     @Test
+     void testGetSHC() throws WeaponNotFoundException {
+         assertEquals("Austringer", wkc.getHandCannon("austringer").itemName);
+Index: src/test/tests/ModelTests/KineticTestSet.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package tests.ModelTests;\r\n\r\npublic class KineticTestSet {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/test/tests/ModelTests/KineticTestSet.java	(revision 533b47a79fbc89afe00ae68754c0f9c602e93be4)
++++ src/test/tests/ModelTests/KineticTestSet.java	(date 1565149280541)
+@@ -1,4 +1,1 @@
+-package tests.ModelTests;
+ 
+-public class KineticTestSet {
+-}
+Index: src/main/model/weapons/kinetic/Kinetic.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package model.weapons.kinetic;\r\n\r\nimport model.runes.Runes;\r\nimport model.weapons.kinetic.handcannons.Austringer;\r\nimport model.weapons.kinetic.handcannons.PribanaD;\r\nimport model.weapons.kinetic.shotguns.DustRockBlues;\r\nimport model.weapons.kinetic.shotguns.ImperialDecree;\r\nimport model.weapons.kinetic.shotguns.ParcelOfStarDust;\r\nimport model.weapons.kinetic.sidearms.SmugglersWord;\r\nimport model.weapons.kinetic.snipers.DreadedVenture;\r\nimport model.weapons.energy.snipers.FateCriesFoul;\r\nimport model.weapons.kinetic.submachineguns.HardTruths;\r\nimport model.weapons.kinetic.submachineguns.TracklessWaste;\r\n\r\nimport java.util.HashMap;\r\n\r\npublic class Kinetic {\r\n    private HashMap<String, Runes> handCannons;\r\n    private HashMap<String, Runes> shotGuns;\r\n    private HashMap<String, Runes> sideArms;\r\n    private HashMap<String, Runes> snipers;\r\n    private HashMap<String, Runes> subMachineGuns;\r\n\r\n    public Kinetic() {\r\n        handCannons = new HashMap<>();\r\n        shotGuns = new HashMap<>();\r\n        sideArms = new HashMap<>();\r\n        snipers = new HashMap<>();\r\n        subMachineGuns = new HashMap<>();\r\n\r\n        loadHandCannons();\r\n        loadShotGuns();\r\n        loadSnipers();\r\n        loadSubMachineGuns();\r\n        loadSideArms();\r\n    }\r\n\r\n    private void loadHandCannons() {\r\n        Austringer austringer = new Austringer();\r\n        PribanaD pribanaD = new PribanaD();\r\n\r\n        handCannons.put(austringer.getKey(), austringer.getCombination());\r\n        handCannons.put(pribanaD.getKey(), pribanaD.getCombination());\r\n    }\r\n\r\n    private void loadShotGuns() {\r\n        DustRockBlues dustRockBlues = new DustRockBlues();\r\n        ImperialDecree imperialDecree = new ImperialDecree();\r\n        ParcelOfStarDust parcelOfStarDust = new ParcelOfStarDust();\r\n\r\n        shotGuns.put(dustRockBlues.getKey(), dustRockBlues.getCombination());\r\n        shotGuns.put(imperialDecree.getKey(),imperialDecree.getCombination());\r\n        shotGuns.put(parcelOfStarDust.getKey(),parcelOfStarDust.getCombination());\r\n    }\r\n\r\n    private void loadSnipers() {\r\n        DreadedVenture dreadedVenture = new DreadedVenture();\r\n        FateCriesFoul fateCriesFoul = new FateCriesFoul();\r\n\r\n        snipers.put(dreadedVenture.getKey(),dreadedVenture.getCombination());\r\n        snipers.put(fateCriesFoul.getKey(), fateCriesFoul.getCombination());\r\n    }\r\n\r\n    private void loadSubMachineGuns() {\r\n        HardTruths hardTruths = new HardTruths();\r\n        TracklessWaste tracklessWaste = new TracklessWaste();\r\n\r\n        subMachineGuns.put(hardTruths.getKey(), hardTruths.getCombination());\r\n        subMachineGuns.put(tracklessWaste.getKey(), tracklessWaste.getCombination());\r\n    }\r\n\r\n    private void loadSideArms() {\r\n        SmugglersWord smugglersWord = new SmugglersWord();\r\n\r\n        sideArms.put(smugglersWord.getKey(), smugglersWord.getCombination());\r\n    }\r\n\r\n    public Runes selectHandCannon(String weapon) {\r\n        return handCannons.get(weapon);\r\n    }\r\n\r\n    public Runes selectSniper(String weapon) {\r\n        return snipers.get(weapon);\r\n    }\r\n\r\n    public Runes selectShotGun(String weapon) {\r\n        return shotGuns.get(weapon);\r\n    }\r\n\r\n    public Runes selectSideArm(String weapon) {\r\n        return sideArms.get(weapon);\r\n    }\r\n\r\n    public Runes selectSubMachineGun(String weapon) {\r\n        return subMachineGuns.get(weapon);\r\n    }\r\n\r\n    public HashMap<String, Runes> getHandCannons() {\r\n        return handCannons;\r\n    }\r\n\r\n    public HashMap<String, Runes> getSnipers() {\r\n        return snipers;\r\n    }\r\n\r\n    public HashMap<String, Runes> getShotGuns() {\r\n        return shotGuns;\r\n    }\r\n\r\n    public HashMap<String, Runes> getSideArms() {\r\n        return sideArms;\r\n    }\r\n\r\n    public HashMap<String, Runes> getSMGs() {\r\n        return subMachineGuns;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/model/weapons/kinetic/Kinetic.java	(revision 533b47a79fbc89afe00ae68754c0f9c602e93be4)
++++ src/main/model/weapons/kinetic/Kinetic.java	(date 1565149188755)
+@@ -94,24 +94,4 @@
+     public Runes selectSubMachineGun(String weapon) {
+         return subMachineGuns.get(weapon);
+     }
+-
+-    public HashMap<String, Runes> getHandCannons() {
+-        return handCannons;
+-    }
+-
+-    public HashMap<String, Runes> getSnipers() {
+-        return snipers;
+-    }
+-
+-    public HashMap<String, Runes> getShotGuns() {
+-        return shotGuns;
+-    }
+-
+-    public HashMap<String, Runes> getSideArms() {
+-        return sideArms;
+-    }
+-
+-    public HashMap<String, Runes> getSMGs() {
+-        return subMachineGuns;
+-    }
+ }
+Index: out/production/project_bjugraj/application.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import javafx.geometry.Insets?>\r\n<?import javafx.scene.control.Button?>\r\n<?import javafx.scene.control.Label?>\r\n<?import javafx.scene.control.ListView?>\r\n<?import javafx.scene.control.Separator?>\r\n<?import javafx.scene.control.Tab?>\r\n<?import javafx.scene.control.TabPane?>\r\n<?import javafx.scene.control.TextField?>\r\n<?import javafx.scene.image.Image?>\r\n<?import javafx.scene.image.ImageView?>\r\n<?import javafx.scene.layout.AnchorPane?>\r\n<?import javafx.scene.layout.ColumnConstraints?>\r\n<?import javafx.scene.layout.GridPane?>\r\n<?import javafx.scene.layout.RowConstraints?>\r\n<?import javafx.scene.text.Font?>\r\n\r\n<AnchorPane fx:id=\"root\" maxHeight=\"-Infinity\" maxWidth=\"-Infinity\" minHeight=\"-Infinity\" minWidth=\"-Infinity\" prefHeight=\"439.0\" prefWidth=\"1318.0\" style=\"-fx-background-color: TRANSPARENT;\" xmlns=\"http://javafx.com/javafx/11.0.1\" xmlns:fx=\"http://javafx.com/fxml/1\" fx:controller=\"view.JavaFXView\">\r\n<children>\r\n    <AnchorPane fx:id=\"close\" layoutX=\"1269.0\" layoutY=\"-2.0\" onDragDetected=\"#handleCloseAction\" onMousePressed=\"#handleCloseAction\" prefHeight=\"29.0\" prefWidth=\"49.0\" style=\"-fx-background-color: #F44336;\">\r\n        <children>\r\n            <ImageView fx:id=\"close_btn\" fitHeight=\"27.0\" fitWidth=\"27.0\" layoutX=\"11.0\" layoutY=\"2.0\" onMousePressed=\"#handleCloseAction\" pickOnBounds=\"true\" preserveRatio=\"true\">\r\n                <image>\r\n                    <Image url=\"@images/icons8-close-window-96.png\" />\r\n                </image>\r\n            </ImageView>\r\n        </children></AnchorPane>\r\n    <AnchorPane fx:id=\"topbar\" layoutX=\"357.0\" layoutY=\"31.0\" prefHeight=\"68.0\" prefWidth=\"460.0\" style=\"-fx-background-color: #1e163b;\">\r\n        <children>\r\n            <ImageView fx:id=\"kinetic_btn\" fitHeight=\"30.0\" fitWidth=\"30.0\" layoutX=\"60.0\" layoutY=\"20.0\" onMousePressed=\"#handleButtonAction\" pickOnBounds=\"true\" preserveRatio=\"true\">\r\n                <image>\r\n                    <Image url=\"@images/icons8-ammo-100.png\" />\r\n                </image>\r\n            </ImageView>\r\n            <ImageView fx:id=\"energy_btn\" fitHeight=\"30.0\" fitWidth=\"30.0\" layoutX=\"210.0\" layoutY=\"20.0\" onMousePressed=\"#handleButtonAction\" pickOnBounds=\"true\" preserveRatio=\"true\">\r\n                <image>\r\n                    <Image url=\"@images/icons8-electricity-64.png\" />\r\n                </image></ImageView>\r\n            <ImageView fx:id=\"heavy_btn\" fitHeight=\"30.0\" fitWidth=\"30.0\" layoutX=\"365.0\" layoutY=\"20.0\" onMousePressed=\"#handleButtonAction\" pickOnBounds=\"true\" preserveRatio=\"true\">\r\n                <image>\r\n                    <Image url=\"@images/icons8-gatling-gun-50.png\" />\r\n                </image></ImageView>\r\n            <Separator layoutX=\"148.0\" layoutY=\"9.0\" orientation=\"VERTICAL\" prefHeight=\"49.0\" prefWidth=\"0.0\" />\r\n            <Separator layoutX=\"294.0\" layoutY=\"9.0\" orientation=\"VERTICAL\" prefHeight=\"49.0\" prefWidth=\"0.0\" />\r\n        </children></AnchorPane>\r\n    <AnchorPane fx:id=\"runes\" layoutY=\"31.0\" prefHeight=\"408.0\" prefWidth=\"353.0\" style=\"-fx-background-color: #1e163b;\">\r\n        <children>\r\n            <ImageView fitHeight=\"78.0\" fitWidth=\"81.0\" layoutX=\"138.0\" layoutY=\"99.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\r\n                <image>\r\n                    <Image url=\"@images/icons8-salad-bowl-100.png\" />\r\n                </image>\r\n            </ImageView>\r\n            <ImageView fitHeight=\"27.0\" fitWidth=\"36.0\" layoutX=\"164.0\" layoutY=\"164.0\" pickOnBounds=\"true\" preserveRatio=\"true\">\r\n                <image>\r\n                    <Image url=\"@images/icons8-circle-96.png\" />\r\n                </image>\r\n            </ImageView>\r\n            <ImageView fitHeight=\"62.0\" fitWidth=\"37.0\" layoutX=\"158.0\" layoutY=\"187.0\" pickOnBounds=\"true\" preserveRatio=\"true\" style=\"-fx-rotate: 180;\">\r\n                <image>\r\n                    <Image url=\"@images/icons8-salad-bowl-100.png\" />\r\n                </image>\r\n            </ImageView>\r\n            <AnchorPane layoutX=\"48.0\" layoutY=\"134.0\" prefHeight=\"60.0\" prefWidth=\"60.0\" style=\"-fx-background-color: #CCCCCC;\">\r\n               <children>\r\n                  <AnchorPane layoutX=\"1.0\" layoutY=\"1.0\" prefHeight=\"58.0\" prefWidth=\"58.0\" style=\"-fx-background-color: #3b335c;\">\r\n                     <children>\r\n                        <ImageView fx:id=\"r2\" fitHeight=\"58.0\" fitWidth=\"58.0\" pickOnBounds=\"true\" preserveRatio=\"true\" />\r\n                     </children>\r\n                  </AnchorPane>\r\n               </children>\r\n            </AnchorPane>\r\n            <AnchorPane layoutX=\"247.0\" layoutY=\"134.0\" prefHeight=\"60.0\" prefWidth=\"60.0\" style=\"-fx-background-color: #CCCCCC;\">\r\n               <children>\r\n                  <AnchorPane layoutX=\"1.0\" layoutY=\"1.0\" prefHeight=\"58.0\" prefWidth=\"58.0\" style=\"-fx-background-color: #3b335c;\">\r\n                     <children>\r\n                        <ImageView fx:id=\"r3\" fitHeight=\"58.0\" fitWidth=\"58.0\" pickOnBounds=\"true\" preserveRatio=\"true\" />\r\n                     </children>\r\n                  </AnchorPane>\r\n               </children>\r\n            </AnchorPane>\r\n            <AnchorPane layoutX=\"148.0\" layoutY=\"39.0\" prefHeight=\"60.0\" prefWidth=\"60.0\" style=\"-fx-background-color: #CCCCCC;\">\r\n               <children>\r\n                  <AnchorPane layoutX=\"1.0\" layoutY=\"1.0\" prefHeight=\"58.0\" prefWidth=\"58.0\" style=\"-fx-background-color: #3b335c;\">\r\n                     <children>\r\n                        <ImageView fx:id=\"r1\" fitHeight=\"58.0\" fitWidth=\"58.0\" pickOnBounds=\"true\" preserveRatio=\"true\" />\r\n                     </children>\r\n                  </AnchorPane>\r\n               </children>\r\n            </AnchorPane>\r\n            <AnchorPane layoutX=\"147.0\" layoutY=\"234.0\" prefHeight=\"60.0\" prefWidth=\"60.0\" style=\"-fx-background-color: #CCCCCC;\">\r\n               <children>\r\n                  <AnchorPane layoutX=\"1.0\" layoutY=\"1.0\" prefHeight=\"58.0\" prefWidth=\"58.0\" style=\"-fx-background-color: #3b335c;\">\r\n                     <children>\r\n                        <ImageView fx:id=\"itemImage\" fitHeight=\"56.0\" fitWidth=\"56.0\" pickOnBounds=\"true\" preserveRatio=\"true\" />\r\n                     </children>\r\n                  </AnchorPane>\r\n               </children>\r\n            </AnchorPane>\r\n            <Button layoutX=\"83.0\" layoutY=\"317.0\" mnemonicParsing=\"false\" onMousePressed=\"#handleSave\" prefHeight=\"28.0\" prefWidth=\"191.0\" style=\"-fx-background-color: #28B351;\" text=\"Save\" textAlignment=\"CENTER\" textFill=\"WHITE\" />\r\n            <Button layoutX=\"114.0\" layoutY=\"357.0\" mnemonicParsing=\"false\" onMousePressed=\"#handleClear\" prefHeight=\"28.0\" prefWidth=\"129.0\" style=\"-fx-background-color: #3498DB;\" text=\"Clear\" textFill=\"WHITE\">\r\n               <font>\r\n                  <Font size=\"10.0\" />\r\n               </font>\r\n            </Button>\r\n        </children></AnchorPane>\r\n      <AnchorPane fx:id=\"heavy1\" layoutX=\"1016.0\" layoutY=\"244.0\" onDragDetected=\"#handleButtonAction\" prefHeight=\"196.0\" prefWidth=\"302.0\" style=\"-fx-background-color: #1e163b;\">\r\n         <children>\r\n            <GridPane layoutX=\"2.0\" prefHeight=\"193.0\" prefWidth=\"302.0\">\r\n              <columnConstraints>\r\n                <ColumnConstraints hgrow=\"SOMETIMES\" minWidth=\"10.0\" prefWidth=\"100.0\" />\r\n                <ColumnConstraints hgrow=\"SOMETIMES\" minWidth=\"10.0\" prefWidth=\"100.0\" />\r\n              </columnConstraints>\r\n              <rowConstraints>\r\n                <RowConstraints minHeight=\"10.0\" prefHeight=\"30.0\" vgrow=\"SOMETIMES\" />\r\n                <RowConstraints minHeight=\"10.0\" prefHeight=\"30.0\" vgrow=\"SOMETIMES\" />\r\n                <RowConstraints minHeight=\"10.0\" prefHeight=\"30.0\" vgrow=\"SOMETIMES\" />\r\n              </rowConstraints>\r\n               <children>\r\n                  <ImageView fx:id=\"weatherIcon\" fitHeight=\"100.0\" fitWidth=\"100.0\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.halignment=\"LEFT\">\r\n                     <GridPane.margin>\r\n                        <Insets left=\"10.0\" top=\"20.0\" />\r\n                     </GridPane.margin>\r\n                  </ImageView>\r\n                  <Label fx:id=\"weatherTemp\" prefHeight=\"26.0\" prefWidth=\"86.0\" textFill=\"WHITE\" GridPane.columnIndex=\"1\">\r\n                     <font>\r\n                        <Font size=\"39.0\" />\r\n                     </font>\r\n                     <padding>\r\n                        <Insets top=\"15.0\" />\r\n                     </padding>\r\n                  </Label>\r\n                  <Label text=\"Vancouver, BC\" textFill=\"WHITE\" GridPane.columnIndex=\"1\" GridPane.halignment=\"LEFT\" GridPane.rowIndex=\"1\">\r\n                     <opaqueInsets>\r\n                        <Insets top=\"10.0\" />\r\n                     </opaqueInsets>\r\n                     <padding>\r\n                        <Insets bottom=\"40.0\" />\r\n                     </padding>\r\n                  </Label>\r\n                  <Label textFill=\"WHITE\" GridPane.columnIndex=\"1\" GridPane.rowIndex=\"1\" />\r\n                  <Label prefHeight=\"44.0\" prefWidth=\"60.0\" text=\"C\" textFill=\"WHITE\" GridPane.columnIndex=\"1\">\r\n                     <GridPane.margin>\r\n                        <Insets />\r\n                     </GridPane.margin>\r\n                     <padding>\r\n                        <Insets left=\"45.0\" top=\"25.0\" />\r\n                     </padding>\r\n                     <font>\r\n                        <Font size=\"23.0\" />\r\n                     </font>\r\n                  </Label>\r\n                  <Label fx:id=\"hour\" textFill=\"#f2f2f2\" GridPane.columnIndex=\"1\" GridPane.rowIndex=\"2\">\r\n                     <font>\r\n                        <Font size=\"28.0\" />\r\n                     </font>\r\n                  </Label>\r\n                  <Label fx:id=\"minute\" textFill=\"WHITE\" GridPane.columnIndex=\"1\" GridPane.rowIndex=\"2\">\r\n                     <font>\r\n                        <Font size=\"28.0\" />\r\n                     </font>\r\n                     <opaqueInsets>\r\n                        <Insets />\r\n                     </opaqueInsets>\r\n                     <padding>\r\n                        <Insets left=\"40.0\" />\r\n                     </padding>\r\n                  </Label>\r\n                  <Label text=\":\" textFill=\"WHITE\" GridPane.columnIndex=\"1\" GridPane.rowIndex=\"2\">\r\n                     <font>\r\n                        <Font size=\"22.0\" />\r\n                     </font>\r\n                     <padding>\r\n                        <Insets left=\"34.0\" />\r\n                     </padding>\r\n                  </Label>\r\n                  <Label text=\"Time\" textFill=\"WHITE\" GridPane.columnIndex=\"1\" GridPane.rowIndex=\"1\" GridPane.valignment=\"BOTTOM\">\r\n                     <GridPane.margin>\r\n                        <Insets bottom=\"-10.0\" />\r\n                     </GridPane.margin>\r\n                     <font>\r\n                        <Font size=\"10.0\" />\r\n                     </font>\r\n                  </Label>\r\n                  <Label text=\"Weather\" textFill=\"WHITE\" GridPane.columnIndex=\"1\" GridPane.valignment=\"TOP\">\r\n                     <font>\r\n                        <Font size=\"10.0\" />\r\n                     </font>\r\n                  </Label>\r\n                  <Label text=\"Items Crafted:\" textFill=\"WHITE\" GridPane.rowIndex=\"1\" GridPane.valignment=\"BOTTOM\">\r\n                     <font>\r\n                        <Font size=\"10.0\" />\r\n                     </font>\r\n                     <padding>\r\n                        <Insets bottom=\"-10.0\" left=\"10.0\" />\r\n                     </padding>\r\n                  </Label>\r\n                  <Label fx:id=\"itemsCrafted\" text=\"0\" textFill=\"WHITE\" GridPane.rowIndex=\"2\">\r\n                     <GridPane.margin>\r\n                        <Insets left=\"10.0\" />\r\n                     </GridPane.margin>\r\n                     <font>\r\n                        <Font size=\"28.0\" />\r\n                     </font>\r\n                  </Label>\r\n               </children>\r\n               <padding>\r\n                  <Insets bottom=\"20.0\" left=\"10.0\" right=\"10.0\" top=\"10.0\" />\r\n               </padding>\r\n            </GridPane>\r\n         </children></AnchorPane>\r\n      <AnchorPane fx:id=\"heavy11\" layoutX=\"1016.0\" layoutY=\"31.0\" onDragDetected=\"#handleButtonAction\" prefHeight=\"209.0\" prefWidth=\"302.0\" style=\"-fx-background-color: #1e163b;\">\r\n         <children>\r\n            <TabPane layoutX=\"14.0\" layoutY=\"23.0\" prefHeight=\"182.0\" prefWidth=\"276.0\" tabClosingPolicy=\"UNAVAILABLE\">\r\n              <tabs>\r\n                <Tab text=\"Notes\">\r\n                  <content>\r\n                    <AnchorPane minHeight=\"0.0\" minWidth=\"0.0\" prefHeight=\"180.0\" prefWidth=\"200.0\">\r\n                           <children>\r\n                              <ListView fx:id=\"notes\" prefHeight=\"117.0\" prefWidth=\"276.0\" />\r\n                              <TextField fx:id=\"noteGet\" layoutX=\"-4.0\" layoutY=\"120.0\" prefHeight=\"25.0\" prefWidth=\"246.0\" />\r\n                              <ImageView fx:id=\"noteSend\" fitHeight=\"20.0\" fitWidth=\"20.0\" layoutX=\"251.0\" layoutY=\"125.0\" onMousePressed=\"#addNote\" pickOnBounds=\"true\" preserveRatio=\"true\">\r\n                                 <image>\r\n                                    <Image url=\"@images/send.png\" />\r\n                                 </image>\r\n                              </ImageView>\r\n                           </children>\r\n                        </AnchorPane>\r\n                  </content>\r\n                </Tab>\r\n                <Tab text=\"Special Notes\">\r\n                  <content>\r\n                    <AnchorPane minHeight=\"0.0\" minWidth=\"0.0\" prefHeight=\"80.0\" prefWidth=\"276.0\">\r\n                           <children>\r\n                              <ListView fx:id=\"specialNotes\" prefHeight=\"117.0\" prefWidth=\"276.0\" />\r\n                              <TextField fx:id=\"specialNoteGet\" layoutX=\"-4.0\" layoutY=\"120.0\" prefHeight=\"25.0\" prefWidth=\"246.0\" />\r\n                              <ImageView fitHeight=\"20.0\" fitWidth=\"20.0\" layoutX=\"251.0\" layoutY=\"125.0\" onMousePressed=\"#addSpecialNote\" pickOnBounds=\"true\" preserveRatio=\"true\">\r\n                                 <image>\r\n                                    <Image url=\"@images/send.png\" />\r\n                                 </image>\r\n                              </ImageView>\r\n                           </children>\r\n                        </AnchorPane>\r\n                  </content>\r\n                </Tab>\r\n              </tabs>\r\n            </TabPane>\r\n         </children>\r\n      </AnchorPane>\r\n      <AnchorPane layoutX=\"821.0\" layoutY=\"31.0\" prefHeight=\"408.0\" prefWidth=\"191.0\" style=\"-fx-background-color: #1e163b;\">\r\n         <children>\r\n            <ListView fx:id=\"saveList\" layoutX=\"14.0\" layoutY=\"39.0\" prefHeight=\"356.0\" prefWidth=\"164.0\" />\r\n            <Label layoutX=\"16.0\" layoutY=\"14.0\" text=\"Saved Items\" textFill=\"#fffbfb\" />\r\n         </children></AnchorPane>\r\n      <AnchorPane layoutX=\"-1.0\" layoutY=\"-3.0\" prefHeight=\"30.0\" prefWidth=\"131.0\" style=\"-fx-background-color: #1e163b;\">\r\n         <children>\r\n            <Label layoutX=\"39.0\" layoutY=\"7.0\" text=\"Chalice.io\" textFill=\"WHITE\" />\r\n         </children>\r\n      </AnchorPane>\r\n    <AnchorPane fx:id=\"heavy\" layoutX=\"357.0\" layoutY=\"103.0\" onDragDetected=\"#handleButtonAction\" prefHeight=\"337.0\" prefWidth=\"460.0\" style=\"-fx-background-color: #1e163b;\">\r\n         <children>\r\n            <GridPane layoutX=\"3.0\" layoutY=\"1.0\" prefHeight=\"336.0\" prefWidth=\"206.0\">\r\n              <columnConstraints>\r\n                <ColumnConstraints hgrow=\"SOMETIMES\" minWidth=\"10.0\" prefWidth=\"100.0\" />\r\n                <ColumnConstraints hgrow=\"SOMETIMES\" minWidth=\"10.0\" prefWidth=\"100.0\" />\r\n              </columnConstraints>\r\n              <rowConstraints>\r\n                <RowConstraints minHeight=\"10.0\" prefHeight=\"30.0\" vgrow=\"SOMETIMES\" />\r\n                <RowConstraints minHeight=\"10.0\" prefHeight=\"30.0\" vgrow=\"SOMETIMES\" />\r\n                <RowConstraints minHeight=\"10.0\" prefHeight=\"30.0\" vgrow=\"SOMETIMES\" />\r\n              </rowConstraints>\r\n               <children>\r\n                  <ImageView fx:id=\"fixedodds\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftMachinegun\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.halignment=\"CENTER\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/64f8f783ffec48fa584b32bbc373cf2a.jpg\" />\r\n                     </image>\r\n                     <GridPane.margin>\r\n                        <Insets />\r\n                     </GridPane.margin>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"badomens\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftRocket\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"1\" GridPane.halignment=\"CENTER\" GridPane.rowIndex=\"2\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/d7a9848f2de9f598fe8aae242937a5d3.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"sleepless\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftRocket\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"1\" GridPane.halignment=\"CENTER\" GridPane.rowIndex=\"1\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/695c080677c65b29cc9df802236ceed5.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"zenobiad\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftRocket\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"1\" GridPane.halignment=\"CENTER\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/b390cac46aea226353e07e07f6cc6f2d.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n               </children>\r\n               <padding>\r\n                  <Insets bottom=\"80.0\" left=\"20.0\" right=\"20.0\" top=\"10.0\" />\r\n               </padding>\r\n            </GridPane>\r\n         </children>\r\n      </AnchorPane>\r\n    <AnchorPane fx:id=\"kinetic\" layoutX=\"357.0\" layoutY=\"103.0\" onDragDetected=\"#handleButtonAction\" prefHeight=\"336.0\" prefWidth=\"460.0\" style=\"-fx-background-color: #1e163b;\">\r\n         <children>\r\n            <GridPane layoutY=\"1.0\" prefHeight=\"329.0\" prefWidth=\"459.0\">\r\n              <columnConstraints>\r\n                <ColumnConstraints hgrow=\"SOMETIMES\" minWidth=\"10.0\" prefWidth=\"100.0\" />\r\n                  <ColumnConstraints hgrow=\"SOMETIMES\" minWidth=\"10.0\" prefWidth=\"100.0\" />\r\n                  <ColumnConstraints hgrow=\"SOMETIMES\" minWidth=\"10.0\" prefWidth=\"100.0\" />\r\n                  <ColumnConstraints hgrow=\"SOMETIMES\" minWidth=\"10.0\" prefWidth=\"100.0\" />\r\n                <ColumnConstraints hgrow=\"SOMETIMES\" minWidth=\"10.0\" prefWidth=\"100.0\" />\r\n              </columnConstraints>\r\n              <rowConstraints>\r\n                <RowConstraints minHeight=\"10.0\" prefHeight=\"30.0\" vgrow=\"SOMETIMES\" />\r\n                <RowConstraints minHeight=\"10.0\" prefHeight=\"30.0\" vgrow=\"SOMETIMES\" />\r\n                <RowConstraints minHeight=\"10.0\" prefHeight=\"30.0\" vgrow=\"SOMETIMES\" />\r\n              </rowConstraints>\r\n               <padding>\r\n                  <Insets bottom=\"80.0\" left=\"20.0\" right=\"20.0\" top=\"10.0\" />\r\n               </padding>\r\n               <children>\r\n                  <ImageView fx:id=\"austringer\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftHandCannon\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.halignment=\"CENTER\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/2f8c0b28a374749c19e3f90e5a69f371.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"pibanad\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftHandCannon\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.halignment=\"CENTER\" GridPane.rowIndex=\"1\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/91ca86b2cb3da4b0b4bc0eff77aae522.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"hardtruths\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftSMG\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"4\" GridPane.halignment=\"CENTER\" GridPane.rowIndex=\"1\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/2a542e897c0689b8ea9a1bcaa815f24f.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"tracklesswaste\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftSMG\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"4\" GridPane.halignment=\"CENTER\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/79fe455dd172f8e56b93e971adbf3132.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"dreadedventure\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftSniper\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"3\" GridPane.halignment=\"CENTER\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/08bedfe45785cf071f22f128a3b10ed6.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"smugglersword\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftSideArm\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"2\" GridPane.halignment=\"CENTER\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/69fbf3b40b8fb6760c078d422c26146c.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"imperialdecree\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftShotGun\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"1\" GridPane.halignment=\"CENTER\" GridPane.rowIndex=\"2\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/b64923bae9ebf4785ec888f7c4b95213.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"parcelofstardust\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftShotGun\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"1\" GridPane.halignment=\"CENTER\" GridPane.rowIndex=\"1\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/92ede747eb53ba1552761b6efde54839.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"dustrockblues\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftShotGun\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"1\" GridPane.halignment=\"CENTER\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/4b068eddf020f2f272d83998f210e33b.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n               </children>\r\n            </GridPane>\r\n         </children>\r\n      </AnchorPane>\r\n    <AnchorPane fx:id=\"energy\" layoutX=\"357.0\" layoutY=\"103.0\" onDragDetected=\"#handleButtonAction\" prefHeight=\"336.0\" prefWidth=\"459.0\" style=\"-fx-background-color: #1e163b;\">\r\n         <children>\r\n            <GridPane layoutX=\"3.0\" layoutY=\"4.0\" prefHeight=\"329.0\" prefWidth=\"449.0\">\r\n              <columnConstraints>\r\n                <ColumnConstraints hgrow=\"SOMETIMES\" minWidth=\"10.0\" prefWidth=\"100.0\" />\r\n                  <ColumnConstraints hgrow=\"SOMETIMES\" minWidth=\"10.0\" prefWidth=\"100.0\" />\r\n                  <ColumnConstraints hgrow=\"SOMETIMES\" minWidth=\"10.0\" prefWidth=\"100.0\" />\r\n                  <ColumnConstraints hgrow=\"SOMETIMES\" minWidth=\"10.0\" prefWidth=\"100.0\" />\r\n                  <ColumnConstraints hgrow=\"SOMETIMES\" minWidth=\"10.0\" prefWidth=\"100.0\" />\r\n                <ColumnConstraints hgrow=\"SOMETIMES\" minWidth=\"10.0\" prefWidth=\"100.0\" />\r\n              </columnConstraints>\r\n              <rowConstraints>\r\n                <RowConstraints minHeight=\"10.0\" prefHeight=\"30.0\" vgrow=\"SOMETIMES\" />\r\n                <RowConstraints minHeight=\"10.0\" prefHeight=\"30.0\" vgrow=\"SOMETIMES\" />\r\n                <RowConstraints minHeight=\"10.0\" prefHeight=\"30.0\" vgrow=\"SOMETIMES\" />\r\n                  <RowConstraints minHeight=\"10.0\" prefHeight=\"30.0\" vgrow=\"SOMETIMES\" />\r\n              </rowConstraints>\r\n               <children>\r\n                  <ImageView fx:id=\"trust\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftEHandCannon\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.halignment=\"CENTER\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/09d614a6136d68995331620f1e208293.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"wakingvigil\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftEHandCannon\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.halignment=\"CENTER\" GridPane.rowIndex=\"1\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/4714cdb1cbe8054afe541aace1abb9d1.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"theepicurean\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftEFusion\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"5\" GridPane.halignment=\"CENTER\" GridPane.rowIndex=\"3\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/da8107405a56d6e10b0612d5c5fe7440.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"proeliumfr3\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftEFusion\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"5\" GridPane.halignment=\"CENTER\" GridPane.rowIndex=\"2\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/ecce6ce0eb045afaf76d5494edecebbe.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"erentilfr4\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftEFusion\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"5\" GridPane.halignment=\"CENTER\" GridPane.rowIndex=\"1\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/a54b9d49269f6bc59a1f79622d247af9.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"mainingredient\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftEFusion\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"5\" GridPane.halignment=\"CENTER\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/b0fe53213ec8698ed6e3308df5030a1e.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"drang\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftESideArm\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"4\" GridPane.halignment=\"CENTER\" GridPane.rowIndex=\"2\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/682960ff3c1cb34f439c08ebfb38db68.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"lastdance\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftESideArm\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"4\" GridPane.halignment=\"CENTER\" GridPane.rowIndex=\"1\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/e1ad2683c69e93c1e3cf9f41f98858e6.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"anonymousautumn\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftESideArm\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"4\" GridPane.halignment=\"CENTER\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/a33d4e17977cb5b47499709213a19e35.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"calusminitool\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftESMG\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"3\" GridPane.halignment=\"CENTER\" GridPane.rowIndex=\"1\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/982d64221a581063992ddc9aa6c32a85.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"badreputation\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftESMG\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"3\" GridPane.halignment=\"CENTER\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/cf7686ea1020e77ddec4c222eb793617.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"beloved\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftESniper\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"2\" GridPane.halignment=\"CENTER\" GridPane.rowIndex=\"2\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/a804c23a5ad568efe4da68911bacd263.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"twilightoath\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftESniper\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"2\" GridPane.halignment=\"CENTER\" GridPane.rowIndex=\"1\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/6f9a8cf53dbf5085375552260f5ee2fd.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"fatecriesfoul\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftESniper\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"2\" GridPane.halignment=\"CENTER\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/b7df307c3eb9f4638ec102f1640fe33a.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n                  <ImageView fx:id=\"badlander\" fitHeight=\"58.0\" fitWidth=\"58.0\" onMousePressed=\"#handleCraftEShotGun\" pickOnBounds=\"true\" preserveRatio=\"true\" GridPane.columnIndex=\"1\" GridPane.halignment=\"CENTER\">\r\n                     <image>\r\n                        <Image url=\"https://www.bungie.net/common/destiny2_content/icons/485f97f5a08c48161dcceda89fed1651.jpg\" />\r\n                     </image>\r\n                  </ImageView>\r\n               </children>\r\n               <padding>\r\n                  <Insets bottom=\"10.0\" left=\"10.0\" right=\"10.0\" top=\"10.0\" />\r\n               </padding>\r\n            </GridPane>\r\n         </children>\r\n    </AnchorPane>\r\n</children>\r\n</AnchorPane>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- out/production/project_bjugraj/application.fxml	(revision 533b47a79fbc89afe00ae68754c0f9c602e93be4)
++++ out/production/project_bjugraj/application.fxml	(date 1565136554497)
+@@ -16,7 +16,7 @@
+ <?import javafx.scene.layout.RowConstraints?>
+ <?import javafx.scene.text.Font?>
+ 
+-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="439.0" prefWidth="1318.0" style="-fx-background-color: TRANSPARENT;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.JavaFXView">
++<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="1318.0" style="-fx-background-color: TRANSPARENT;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.JavaFXView">
+ <children>
+     <AnchorPane fx:id="close" layoutX="1269.0" layoutY="-2.0" onDragDetected="#handleCloseAction" onMousePressed="#handleCloseAction" prefHeight="29.0" prefWidth="49.0" style="-fx-background-color: #F44336;">
+         <children>
+@@ -26,25 +26,25 @@
+                 </image>
+             </ImageView>
+         </children></AnchorPane>
+-    <AnchorPane fx:id="topbar" layoutX="357.0" layoutY="31.0" prefHeight="68.0" prefWidth="460.0" style="-fx-background-color: #1e163b;">
++    <AnchorPane fx:id="topbar" layoutX="357.0" layoutY="31.0" prefHeight="68.0" prefWidth="460.0" style="-fx-background-color: #1e163b; -fx-background-radius: 10; -fx-border-radius: 5; -fx-border-width: 5; -fx-border-color: #3b335c;">
+         <children>
+-            <ImageView fx:id="kinetic_btn" fitHeight="30.0" fitWidth="30.0" layoutX="60.0" layoutY="20.0" onMousePressed="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
++            <ImageView fx:id="kineticbtn" fitHeight="30.0" fitWidth="30.0" layoutX="60.0" layoutY="20.0" onMousePressed="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@images/icons8-ammo-100.png" />
+                 </image>
+             </ImageView>
+-            <ImageView fx:id="energy_btn" fitHeight="30.0" fitWidth="30.0" layoutX="210.0" layoutY="20.0" onMousePressed="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
++            <ImageView fx:id="energybtn" fitHeight="30.0" fitWidth="30.0" layoutX="210.0" layoutY="20.0" onMousePressed="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@images/icons8-electricity-64.png" />
+                 </image></ImageView>
+-            <ImageView fx:id="heavy_btn" fitHeight="30.0" fitWidth="30.0" layoutX="365.0" layoutY="20.0" onMousePressed="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
++            <ImageView fx:id="heavybtn" fitHeight="30.0" fitWidth="30.0" layoutX="365.0" layoutY="20.0" onMousePressed="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@images/icons8-gatling-gun-50.png" />
+                 </image></ImageView>
+             <Separator layoutX="148.0" layoutY="9.0" orientation="VERTICAL" prefHeight="49.0" prefWidth="0.0" />
+             <Separator layoutX="294.0" layoutY="9.0" orientation="VERTICAL" prefHeight="49.0" prefWidth="0.0" />
+         </children></AnchorPane>
+-    <AnchorPane fx:id="runes" layoutY="31.0" prefHeight="408.0" prefWidth="353.0" style="-fx-background-color: #1e163b;">
++    <AnchorPane fx:id="runes" layoutY="31.0" prefHeight="410.0" prefWidth="353.0" style="-fx-background-color: #1e163b; -fx-border-color: #3b335c; -fx-border-width: 5; -fx-border-radius: 5; -fx-background-radius: 10;">
+         <children>
+             <ImageView fitHeight="78.0" fitWidth="81.0" layoutX="138.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+                 <image>
+@@ -104,9 +104,9 @@
+                </font>
+             </Button>
+         </children></AnchorPane>
+-      <AnchorPane fx:id="heavy1" layoutX="1016.0" layoutY="244.0" onDragDetected="#handleButtonAction" prefHeight="196.0" prefWidth="302.0" style="-fx-background-color: #1e163b;">
++      <AnchorPane fx:id="heavy1" layoutX="1016.0" layoutY="251.0" onDragDetected="#handleButtonAction" prefHeight="190.0" prefWidth="303.0" style="-fx-background-color: #1e163b; -fx-background-radius: 10; -fx-border-color: #3b335c; -fx-border-radius: 5; -fx-border-width: 5;">
+          <children>
+-            <GridPane layoutX="2.0" prefHeight="193.0" prefWidth="302.0">
++            <GridPane layoutX="25.0" layoutY="17.0" prefHeight="163.0" prefWidth="268.0">
+               <columnConstraints>
+                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+@@ -119,7 +119,7 @@
+                <children>
+                   <ImageView fx:id="weatherIcon" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT">
+                      <GridPane.margin>
+-                        <Insets left="10.0" top="20.0" />
++                        <Insets left="6.0" top="20.0" />
+                      </GridPane.margin>
+                   </ImageView>
+                   <Label fx:id="weatherTemp" prefHeight="26.0" prefWidth="86.0" textFill="WHITE" GridPane.columnIndex="1">
+@@ -135,7 +135,7 @@
+                         <Insets top="10.0" />
+                      </opaqueInsets>
+                      <padding>
+-                        <Insets bottom="40.0" />
++                        <Insets bottom="30.0" />
+                      </padding>
+                   </Label>
+                   <Label textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+@@ -171,7 +171,7 @@
+                         <Font size="22.0" />
+                      </font>
+                      <padding>
+-                        <Insets left="34.0" />
++                        <Insets left="33.0" />
+                      </padding>
+                   </Label>
+                   <Label text="Time" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+@@ -209,13 +209,13 @@
+                </padding>
+             </GridPane>
+          </children></AnchorPane>
+-      <AnchorPane fx:id="heavy11" layoutX="1016.0" layoutY="31.0" onDragDetected="#handleButtonAction" prefHeight="209.0" prefWidth="302.0" style="-fx-background-color: #1e163b;">
++      <AnchorPane fx:id="heavy11" layoutX="1016.0" layoutY="31.0" onDragDetected="#handleButtonAction" prefHeight="210.0" prefWidth="302.0" style="-fx-background-color: #1e163b; -fx-background-radius: 10; -fx-border-color: #3b335c; -fx-border-radius: 5; -fx-border-width: 5;">
+          <children>
+             <TabPane layoutX="14.0" layoutY="23.0" prefHeight="182.0" prefWidth="276.0" tabClosingPolicy="UNAVAILABLE">
+               <tabs>
+                 <Tab text="Notes">
+                   <content>
+-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
++                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="154.0" prefWidth="276.0">
+                            <children>
+                               <ListView fx:id="notes" prefHeight="117.0" prefWidth="276.0" />
+                               <TextField fx:id="noteGet" layoutX="-4.0" layoutY="120.0" prefHeight="25.0" prefWidth="246.0" />
+@@ -247,62 +247,14 @@
+             </TabPane>
+          </children>
+       </AnchorPane>
+-      <AnchorPane layoutX="821.0" layoutY="31.0" prefHeight="408.0" prefWidth="191.0" style="-fx-background-color: #1e163b;">
++      <AnchorPane layoutX="821.0" layoutY="31.0" prefHeight="410.0" prefWidth="191.0" style="-fx-background-color: #1e163b; -fx-background-radius: 10; -fx-border-color: #3b335c; -fx-border-radius: 5; -fx-border-width: 5;">
+          <children>
+             <ListView fx:id="saveList" layoutX="14.0" layoutY="39.0" prefHeight="356.0" prefWidth="164.0" />
+             <Label layoutX="16.0" layoutY="14.0" text="Saved Items" textFill="#fffbfb" />
+          </children></AnchorPane>
+-      <AnchorPane layoutX="-1.0" layoutY="-3.0" prefHeight="30.0" prefWidth="131.0" style="-fx-background-color: #1e163b;">
+-         <children>
+-            <Label layoutX="39.0" layoutY="7.0" text="Chalice.io" textFill="WHITE" />
+-         </children>
+-      </AnchorPane>
+-    <AnchorPane fx:id="heavy" layoutX="357.0" layoutY="103.0" onDragDetected="#handleButtonAction" prefHeight="337.0" prefWidth="460.0" style="-fx-background-color: #1e163b;">
+-         <children>
+-            <GridPane layoutX="3.0" layoutY="1.0" prefHeight="336.0" prefWidth="206.0">
+-              <columnConstraints>
+-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+-              </columnConstraints>
+-              <rowConstraints>
+-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+-              </rowConstraints>
+-               <children>
+-                  <ImageView fx:id="fixedodds" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftMachinegun" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
+-                     <image>
+-                        <Image url="https://www.bungie.net/common/destiny2_content/icons/64f8f783ffec48fa584b32bbc373cf2a.jpg" />
+-                     </image>
+-                     <GridPane.margin>
+-                        <Insets />
+-                     </GridPane.margin>
+-                  </ImageView>
+-                  <ImageView fx:id="badomens" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftRocket" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+-                     <image>
+-                        <Image url="https://www.bungie.net/common/destiny2_content/icons/d7a9848f2de9f598fe8aae242937a5d3.jpg" />
+-                     </image>
+-                  </ImageView>
+-                  <ImageView fx:id="sleepless" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftRocket" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+-                     <image>
+-                        <Image url="https://www.bungie.net/common/destiny2_content/icons/695c080677c65b29cc9df802236ceed5.jpg" />
+-                     </image>
+-                  </ImageView>
+-                  <ImageView fx:id="zenobiad" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftRocket" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+-                     <image>
+-                        <Image url="https://www.bungie.net/common/destiny2_content/icons/b390cac46aea226353e07e07f6cc6f2d.jpg" />
+-                     </image>
+-                  </ImageView>
+-               </children>
+-               <padding>
+-                  <Insets bottom="80.0" left="20.0" right="20.0" top="10.0" />
+-               </padding>
+-            </GridPane>
+-         </children>
+-      </AnchorPane>
+-    <AnchorPane fx:id="kinetic" layoutX="357.0" layoutY="103.0" onDragDetected="#handleButtonAction" prefHeight="336.0" prefWidth="460.0" style="-fx-background-color: #1e163b;">
++    <AnchorPane fx:id="kinetic" layoutX="357.0" layoutY="103.0" onDragDetected="#handleButtonAction" prefHeight="336.0" prefWidth="460.0" style="-fx-background-color: #1e163b; -fx-border-color: #3b335c; -fx-border-width: 5; -fx-background-radius: 10; -fx-border-width: 5; -fx-border-radius: 5;">
+          <children>
+-            <GridPane layoutY="1.0" prefHeight="329.0" prefWidth="459.0">
++            <GridPane layoutY="1.0" prefHeight="314.0" prefWidth="446.0">
+               <columnConstraints>
+                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+@@ -368,9 +320,9 @@
+             </GridPane>
+          </children>
+       </AnchorPane>
+-    <AnchorPane fx:id="energy" layoutX="357.0" layoutY="103.0" onDragDetected="#handleButtonAction" prefHeight="336.0" prefWidth="459.0" style="-fx-background-color: #1e163b;">
++    <AnchorPane fx:id="energy" layoutX="357.0" layoutY="103.0" onDragDetected="#handleButtonAction" prefHeight="336.0" prefWidth="460.0" style="-fx-background-color: #1e163b; -fx-background-radius: 10; -fx-border-radius: 5; -fx-border-width: 5; -fx-border-color: #3b335c;">
+          <children>
+-            <GridPane layoutX="3.0" layoutY="4.0" prefHeight="329.0" prefWidth="449.0">
++            <GridPane layoutX="3.0" layoutY="4.0" prefHeight="313.0" prefWidth="443.0">
+               <columnConstraints>
+                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+@@ -431,12 +383,12 @@
+                         <Image url="https://www.bungie.net/common/destiny2_content/icons/a33d4e17977cb5b47499709213a19e35.jpg" />
+                      </image>
+                   </ImageView>
+-                  <ImageView fx:id="calusminitool" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftESMG" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
++                  <ImageView fx:id="calusminitool" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftESmg" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                      <image>
+                         <Image url="https://www.bungie.net/common/destiny2_content/icons/982d64221a581063992ddc9aa6c32a85.jpg" />
+                      </image>
+                   </ImageView>
+-                  <ImageView fx:id="badreputation" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftESMG" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
++                  <ImageView fx:id="badreputation" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftESmg" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                      <image>
+                         <Image url="https://www.bungie.net/common/destiny2_content/icons/cf7686ea1020e77ddec4c222eb793617.jpg" />
+                      </image>
+@@ -468,5 +420,53 @@
+             </GridPane>
+          </children>
+     </AnchorPane>
++    <AnchorPane fx:id="heavy" layoutX="357.0" layoutY="103.0" onDragDetected="#handleButtonAction" prefHeight="337.0" prefWidth="460.0" style="-fx-background-color: #1e163b; -fx-background-radius: 10; -fx-border-radius: 5; -fx-border-width: 5; -fx-border-color: #3b335c;">
++         <children>
++            <GridPane layoutX="3.0" layoutY="1.0" prefHeight="314.0" prefWidth="206.0">
++              <columnConstraints>
++                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
++                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
++              </columnConstraints>
++              <rowConstraints>
++                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
++                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
++                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
++              </rowConstraints>
++               <children>
++                  <ImageView fx:id="fixedodds" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftMachinegun" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
++                     <image>
++                        <Image url="https://www.bungie.net/common/destiny2_content/icons/64f8f783ffec48fa584b32bbc373cf2a.jpg" />
++                     </image>
++                     <GridPane.margin>
++                        <Insets />
++                     </GridPane.margin>
++                  </ImageView>
++                  <ImageView fx:id="badomens" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftRocket" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
++                     <image>
++                        <Image url="https://www.bungie.net/common/destiny2_content/icons/d7a9848f2de9f598fe8aae242937a5d3.jpg" />
++                     </image>
++                  </ImageView>
++                  <ImageView fx:id="sleepless" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftRocket" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
++                     <image>
++                        <Image url="https://www.bungie.net/common/destiny2_content/icons/695c080677c65b29cc9df802236ceed5.jpg" />
++                     </image>
++                  </ImageView>
++                  <ImageView fx:id="zenobiad" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftRocket" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
++                     <image>
++                        <Image url="https://www.bungie.net/common/destiny2_content/icons/b390cac46aea226353e07e07f6cc6f2d.jpg" />
++                     </image>
++                  </ImageView>
++               </children>
++               <padding>
++                  <Insets bottom="80.0" left="20.0" right="20.0" top="10.0" />
++               </padding>
++            </GridPane>
++         </children>
++      </AnchorPane>
++      <Label layoutY="-1.0" prefHeight="27.0" prefWidth="71.0" style="-fx-background-color: #1e163b; -fx-background-radius: 5;" text="Chalice.io" textFill="WHITE">
++         <padding>
++            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
++         </padding>
++      </Label>
+ </children>
+ </AnchorPane>

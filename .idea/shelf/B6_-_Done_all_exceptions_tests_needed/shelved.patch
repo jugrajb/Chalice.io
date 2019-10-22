@@ -1,0 +1,90 @@
+Index: src/view/WeaponView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package view;\n\nimport exceptions.weaponExceptions.WeaponNotFoundException;\nimport exceptions.weaponExceptions.WeaponSlotTypeException;\nimport model.Runes.Runes;\n\nimport java.util.Scanner;\n\npublic class WeaponView {\n    //EFFECTS: returns the Runes combination for a given weapon class\n    public static Runes craft() throws WeaponNotFoundException, WeaponSlotTypeException {\n        Scanner scanner = new Scanner(System.in);\n\n        String TYPE_ENERGY = \"energy\";\n        String TYPE_KIN = \"kinetic\";\n        String TYPE_HEAVY = \"heavy\";\n\n        System.out.println(\"Please select a weapon type:\");\n        System.out.println(\"+---------+\");\n        System.out.println(\"| Kinetic |\");\n        System.out.println(\"+---------+\");\n        System.out.println(\"| Energy  |\");\n        System.out.println(\"+---------+\");\n        System.out.println(\"|  Heavy  |\");\n        System.out.println(\"+---------+\\n\");\n\n        String type = scanner.nextLine().toLowerCase();\n        Runes combo = new Runes(\"Not Found\",\"\",\"\",\"\");\n\n        if(type.equals(TYPE_KIN)) {\n            WeaponKineticView wkv = new WeaponKineticView();\n            return wkv.getRuneCombination();\n        }\n        else if(type.equals(TYPE_ENERGY)) {\n            //Energy weaponE = new Energy();\n            System.out.println(\"Coming soon...\\n\");\n       }\n        else if(type.equals(TYPE_HEAVY)) {\n            WeaponHeavyView whv = new WeaponHeavyView();\n            return whv.getRuneCombination();\n        }\n        else {\n            throw new WeaponSlotTypeException();\n        }\n\n        return combo;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/view/WeaponView.java	(revision 85ba331aa9c5d0e68fb138680eecb8a96bf9a2eb)
++++ src/view/WeaponView.java	(date 1563860129000)
+@@ -1,5 +1,6 @@
+ package view;
+ 
++import exceptions.weaponExceptions.NotYetReadyException;
+ import exceptions.weaponExceptions.WeaponNotFoundException;
+ import exceptions.weaponExceptions.WeaponSlotTypeException;
+ import model.Runes.Runes;
+@@ -8,7 +9,7 @@
+ 
+ public class WeaponView {
+     //EFFECTS: returns the Runes combination for a given weapon class
+-    public static Runes craft() throws WeaponNotFoundException, WeaponSlotTypeException {
++    public static Runes craft() throws WeaponNotFoundException, WeaponSlotTypeException, NotYetReadyException {
+         Scanner scanner = new Scanner(System.in);
+ 
+         String TYPE_ENERGY = "energy";
+@@ -25,16 +26,14 @@
+         System.out.println("+---------+\n");
+ 
+         String type = scanner.nextLine().toLowerCase();
+-        Runes combo = new Runes("Not Found","","","");
+ 
+         if(type.equals(TYPE_KIN)) {
+             WeaponKineticView wkv = new WeaponKineticView();
+             return wkv.getRuneCombination();
+         }
+         else if(type.equals(TYPE_ENERGY)) {
+-            //Energy weaponE = new Energy();
+-            System.out.println("Coming soon...\n");
+-       }
++            throw new NotYetReadyException();
++        }
+         else if(type.equals(TYPE_HEAVY)) {
+             WeaponHeavyView whv = new WeaponHeavyView();
+             return whv.getRuneCombination();
+@@ -43,6 +42,5 @@
+             throw new WeaponSlotTypeException();
+         }
+ 
+-        return combo;
+     }
+ }
+Index: src/view/CharWeaponView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package view;\n\nimport model.Character.CharacterLoadOut;\nimport model.Character.Hunter.Hunter;\nimport model.Runes.Runes;\nimport utils.ReadJSON;\n\nimport java.io.FileNotFoundException;\nimport java.util.HashMap;\nimport java.util.Scanner;\n\npublic class CharWeaponView {\n    private HashMap<String, Runes> armor;\n    private HashMap<String, Runes> weapons;\n    private CharacterLoadOut loadOut;\n    private Scanner scanner;\n\n\n    private static final String hunter = \"hunter\";\n    private static final String titan = \"titan\";\n    private static final String warlock = \"warlock\";\n\n    //REQUIRES: Weapon saved list be at least 3 items long\n    //MODIFIES: this\n    //EFFECTS: loads the weapon view\n    public CharWeaponView() throws FileNotFoundException {\n        scanner = new Scanner(System.in);\n        armor = new HashMap<>();\n        weapons = new HashMap<>();\n\n        ReadJSON saved = new ReadJSON();\n        Runes[] items = saved.read(\"items.json\");\n\n        for (int i = 0; i < 3; i++) {\n            Runes item = items[i];\n            String itemKey;\n            if(i == 0) {\n                itemKey = \"primary\";\n            } else if(i == 1) {\n                itemKey = \"secondary\";\n            } else {\n                itemKey = \"heavy\";\n            }\n\n            weapons.put(itemKey, item);\n        }\n\n    }\n\n\n    //EFFECTS: prints weapon list\n    public void Manage() {\n        CharacterLoadOut hunter = new Hunter(armor, weapons);\n        System.out.println(\"Primary: \" + hunter.getPrimary().itemName);\n        System.out.println(\"Secondary: \" + hunter.getSecondary().itemName);\n        System.out.println(\"Heavy: \" + hunter.getHeavy().itemName);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/view/CharWeaponView.java	(revision 85ba331aa9c5d0e68fb138680eecb8a96bf9a2eb)
++++ src/view/CharWeaponView.java	(date 1563860622000)
+@@ -1,5 +1,6 @@
+ package view;
+ 
++import exceptions.characterExceptions.NotEnoughtItemsException;
+ import model.Character.CharacterLoadOut;
+ import model.Character.Hunter.Hunter;
+ import model.Runes.Runes;
+@@ -20,10 +21,9 @@
+     private static final String titan = "titan";
+     private static final String warlock = "warlock";
+ 
+-    //REQUIRES: Weapon saved list be at least 3 items long
+     //MODIFIES: this
+     //EFFECTS: loads the weapon view
+-    public CharWeaponView() throws FileNotFoundException {
++    public CharWeaponView() throws FileNotFoundException, NotEnoughtItemsException {
+         scanner = new Scanner(System.in);
+         armor = new HashMap<>();
+         weapons = new HashMap<>();
+@@ -31,6 +31,10 @@
+         ReadJSON saved = new ReadJSON();
+         Runes[] items = saved.read("items.json");
+ 
++        if(items.length < 3) {
++            throw new NotEnoughtItemsException();
++        }
++
+         for (int i = 0; i < 3; i++) {
+             Runes item = items[i];
+             String itemKey;

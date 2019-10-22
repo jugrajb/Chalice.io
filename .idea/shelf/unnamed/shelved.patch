@@ -1,0 +1,49 @@
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import view.View;\n\nimport java.io.IOException;\n\npublic class Main {\n    public static void main(String[] args) {\n        View items = new View();\n        items.Craft();\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Main.java	(revision e761604011b24d2fb9a4dc1b4572f346545750d9)
++++ src/Main.java	(date 1563899551000)
+@@ -1,7 +1,5 @@
+ import view.View;
+ 
+-import java.io.IOException;
+-
+ public class Main {
+     public static void main(String[] args) {
+         View items = new View();
+Index: src/view/View.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package view;\n\nimport controller.SaveController;\nimport exceptions.weaponExceptions.NotYetReadyException;\nimport exceptions.weaponExceptions.WeaponNotFoundException;\nimport exceptions.weaponExceptions.WeaponSlotTypeException;\nimport model.Runes.Runes;\nimport model.Save.Save;\nimport utils.ReadJSON;\nimport utils.SaveJSON;\nimport utils.StringFilter;\n\nimport java.io.FileNotFoundException;\nimport java.io.IOException;\nimport java.util.Scanner;\n\npublic class View {\n    private static final String ITEM_TYPE_W = \"weapon\";\n    private static final String ITEM_TYPE_A = \"armor\";\n    private static final String EXIT_CRAFTING = \"quit\";\n    private static final String VIEW_SAVED = \"viewsaved\";\n    private static final String REMOVE_SAVED = \"removesaved\";\n    private static final String MANAGE_CHARACTER = \"managecharacter\";\n\n    private Save saveItems;\n    private Scanner scanner;\n    private SaveController saveController;\n\n    public View() {\n        saveItems = new Save();\n        scanner = new Scanner(System.in);\n        saveController = new SaveController(this.saveItems);\n    }\n\n    //EFFECTS: Takes user item for item to craft and calls\n    //         specified method for item crafting or launches\n    //         item manager\n    public void Craft() {\n        try {\n            ReadJSON fileRead = new ReadJSON();\n            Runes[] list = fileRead.read(\"items.json\");\n            saveController.loadRunes(list);\n\n            while (true) {\n                System.out.println(\"\\nPlease select a item:\");\n                System.out.println(\"+------------------+\");\n                System.out.println(\"|   Weapon Craft   |\");\n                System.out.println(\"+------------------+\");\n                System.out.println(\"|    Armor Craft   |\");\n                System.out.println(\"+------------------+\");\n                System.out.println(\"|    View Saved    |\");\n                System.out.println(\"+------------------+\");\n                System.out.println(\"|   Remove Saved   |\");\n                System.out.println(\"+------------------+\");\n                System.out.println(\"| Manage Character |\");\n                System.out.println(\"+------------------+\");\n                System.out.println(\"Or type, 'QUIT' to exit\\n\");\n\n                StringFilter util = new StringFilter();\n\n                String type = scanner.nextLine();\n\n                type = util.convertToKey(type);\n\n\n                if(type.equals(ITEM_TYPE_W)) {\n                    craftWeapon();\n                }\n                if(type.equals(ITEM_TYPE_A)) {\n                    craftArmor();\n                }\n                if (type.equals(VIEW_SAVED)) {\n                    printSaved();\n                }\n                if (type.equals(REMOVE_SAVED)) {\n                    removeSaved();\n                }\n                if (type.equals(MANAGE_CHARACTER)) {\n                    manageChar();\n                }\n                if(type.equals(EXIT_CRAFTING)) {\n                    SaveJSON fileSave = new SaveJSON();\n                    fileSave.save(saveItems, \"items.json\");\n                    break;\n                }\n            }\n        } catch (IOException e) {\n            System.out.println(\"Sorry could not find your save file: \" + e.getMessage());\n        } finally {\n            System.out.println(\"Exiting Crafting...\");\n        }\n    }\n\n    private void craftWeapon() {\n        try {\n            Runes item = WeaponView.craft();\n            printRunes(item);\n            saveItem(item);\n        } catch (WeaponNotFoundException | WeaponSlotTypeException e) {\n            System.out.println(\"\\n\" + \"Error: \" +  e.getMessage());\n        } catch (NotYetReadyException e) {\n            System.out.println(\"\\n\"+ e.getMessage());\n        }\n    }\n\n    private void printRunes(Runes combo) {\n        System.out.println(\"\\nRunes:\");\n        System.out.println(combo.type);\n        System.out.println(combo.classification + \"\\n\");\n    }\n\n    private void craftArmor() {\n        System.out.println(\"Coming Soon...\\n\");\n    }\n\n    private void manageChar() throws FileNotFoundException {\n        new CharManageView().Manage();\n    }\n\n    private void removeSaved() {\n        if (saveController.emptyList()) {\n            System.out.println(\"Sorry, no saved items found\\n\");\n        } else {\n            for (int i = 0; i < saveItems.size(); i++) {\n                Runes item = (Runes) saveItems.get(i);\n                System.out.println((i+1) + \":\" + item.itemName);\n            }\n\n            System.out.println(\"\\nPlease select the item number you would like to remove\");\n\n            Integer index = Integer.valueOf(scanner.nextLine());\n\n            saveController.remove((index-1));\n\n            System.out.println(\"Item removed\\n\");\n        }\n    }\n\n    private void saveItem(Runes item) {\n        System.out.println(\"Would you like to save this combination\");\n        System.out.println(\"Y\");\n        System.out.println(\"N\");\n\n        String confirm = scanner.nextLine().toLowerCase();\n\n        if (confirm.equals(\"y\")) {\n            saveController.saveItem(item);\n        }\n    }\n\n    private void printSaved() {\n        if (saveController.emptyList()) {\n            System.out.println(\"Sorry, no saved items found\\n\");\n        } else {\n            for (Object element : saveItems) {\n                Runes item = (Runes) element;\n                System.out.println(item.itemName);\n                System.out.println(\"Runes: \" + item.type + \" \" + item.classification + \" \" + item.masterwork + \"\\n\");\n            }\n        }\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/view/View.java	(revision e761604011b24d2fb9a4dc1b4572f346545750d9)
++++ src/view/View.java	(date 1563900809000)
+@@ -38,7 +38,7 @@
+     public void Craft() {
+         try {
+             ReadJSON fileRead = new ReadJSON();
+-            Runes[] list = fileRead.read("items.json");
++            Runes[] list = fileRead.read("item.json");
+             saveController.loadRunes(list);
+ 
+             while (true) {
+Index: items.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[]
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- items.json	(revision e761604011b24d2fb9a4dc1b4572f346545750d9)
++++ items.json	(date 1563900796000)
+@@ -1,1 +1,1 @@
+-[]
+\ No newline at end of file
++[{"itemName":"Parcel Of StarDust","type":"Wealth","classification":"Red","masterwork":""},{"itemName":"Dreaded Venture","type":"Jubilation","classification":"Blue","masterwork":""}]
+\ No newline at end of file

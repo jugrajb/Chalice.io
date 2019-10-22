@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="1318.0" style="-fx-background-color: TRANSPARENT;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.JavaFxview">
+<children>
+    <AnchorPane fx:id="close" layoutX="1269.0" layoutY="-2.0" onDragDetected="#handleCloseAction" onMousePressed="#handleCloseAction" prefHeight="29.0" prefWidth="49.0" style="-fx-background-color: #F44336;">
+        <children>
+            <ImageView fx:id="close_btn" fitHeight="27.0" fitWidth="27.0" layoutX="11.0" layoutY="2.0" onMousePressed="#handleCloseAction" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../../data/images/icons8-close-window-96.png" />
+                </image>
+            </ImageView>
+        </children></AnchorPane>
+    <AnchorPane fx:id="topbar" layoutX="357.0" layoutY="31.0" prefHeight="68.0" prefWidth="460.0" style="-fx-background-color: #1e163b; -fx-background-radius: 10; -fx-border-radius: 5; -fx-border-width: 5; -fx-border-color: #3b335c;">
+        <children>
+            <ImageView fx:id="kineticbtn" fitHeight="30.0" fitWidth="30.0" layoutX="60.0" layoutY="20.0" onMousePressed="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../../data/images/icons8-ammo-100.png" />
+                </image>
+            </ImageView>
+            <ImageView fx:id="energybtn" fitHeight="30.0" fitWidth="30.0" layoutX="210.0" layoutY="20.0" onMousePressed="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../../data/images/icons8-electricity-64.png" />
+                </image></ImageView>
+            <ImageView fx:id="heavybtn" fitHeight="30.0" fitWidth="30.0" layoutX="365.0" layoutY="20.0" onMousePressed="#handleButtonAction" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../../data/images/icons8-gatling-gun-50.png" />
+                </image></ImageView>
+            <Separator layoutX="148.0" layoutY="9.0" orientation="VERTICAL" prefHeight="49.0" prefWidth="0.0" />
+            <Separator layoutX="294.0" layoutY="9.0" orientation="VERTICAL" prefHeight="49.0" prefWidth="0.0" />
+        </children></AnchorPane>
+    <AnchorPane fx:id="runes" layoutY="31.0" prefHeight="410.0" prefWidth="353.0" style="-fx-background-color: #1e163b; -fx-border-color: #3b335c; -fx-border-width: 5; -fx-border-radius: 5; -fx-background-radius: 10;">
+        <children>
+            <ImageView fitHeight="78.0" fitWidth="81.0" layoutX="138.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../../data/images/icons8-salad-bowl-100.png" />
+                </image>
+            </ImageView>
+            <ImageView fitHeight="27.0" fitWidth="36.0" layoutX="164.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../../data/images/icons8-circle-96.png" />
+                </image>
+            </ImageView>
+            <ImageView fitHeight="62.0" fitWidth="37.0" layoutX="158.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true" style="-fx-rotate: 180;">
+                <image>
+                    <Image url="@../../../data/images/icons8-salad-bowl-100.png" />
+                </image>
+            </ImageView>
+            <AnchorPane layoutX="48.0" layoutY="134.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #CCCCCC;">
+               <children>
+                  <AnchorPane layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="58.0" style="-fx-background-color: #3b335c;">
+                     <children>
+                        <ImageView fx:id="r2" fitHeight="58.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="247.0" layoutY="134.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #CCCCCC;">
+               <children>
+                  <AnchorPane layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="58.0" style="-fx-background-color: #3b335c;">
+                     <children>
+                        <ImageView fx:id="r3" fitHeight="58.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="148.0" layoutY="39.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #CCCCCC;">
+               <children>
+                  <AnchorPane layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="58.0" style="-fx-background-color: #3b335c;">
+                     <children>
+                        <ImageView fx:id="r1" fitHeight="58.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="147.0" layoutY="234.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #CCCCCC;">
+               <children>
+                  <AnchorPane layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="58.0" style="-fx-background-color: #3b335c;">
+                     <children>
+                        <ImageView fx:id="itemImage" fitHeight="56.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <Button layoutX="83.0" layoutY="317.0" mnemonicParsing="false" onMousePressed="#handleSave" prefHeight="28.0" prefWidth="191.0" style="-fx-background-color: #28B351;" text="Save" textAlignment="CENTER" textFill="WHITE" />
+            <Button layoutX="114.0" layoutY="357.0" mnemonicParsing="false" onMousePressed="#handleClear" prefHeight="28.0" prefWidth="129.0" style="-fx-background-color: #3498DB;" text="Clear" textFill="WHITE">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+        </children></AnchorPane>
+      <AnchorPane fx:id="heavy1" layoutX="1016.0" layoutY="251.0" onDragDetected="#handleButtonAction" prefHeight="190.0" prefWidth="303.0" style="-fx-background-color: #1e163b; -fx-background-radius: 10; -fx-border-color: #3b335c; -fx-border-radius: 5; -fx-border-width: 5;">
+         <children>
+            <GridPane layoutX="25.0" layoutY="17.0" prefHeight="163.0" prefWidth="268.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fx:id="weatherIcon" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT">
+                     <GridPane.margin>
+                        <Insets left="-5.0" top="20.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <Label fx:id="weatherTemp" prefHeight="26.0" prefWidth="86.0" textFill="WHITE" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="39.0" />
+                     </font>
+                     <padding>
+                        <Insets top="15.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Vancouver, BC" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+                     <opaqueInsets>
+                        <Insets top="10.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="30.0" />
+                     </padding>
+                  </Label>
+                  <Label textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label prefHeight="44.0" prefWidth="60.0" text="C" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets left="45.0" top="25.0" />
+                     </padding>
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="hour" textFill="#f2f2f2" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="minute" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="40.0" />
+                     </padding>
+                  </Label>
+                  <Label text=":" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                     <padding>
+                        <Insets left="33.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Time" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="-10.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label text="Weather" textFill="WHITE" GridPane.columnIndex="1" GridPane.valignment="TOP">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label text="Items Crafted:" textFill="WHITE" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="-10.0" left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="itemsCrafted" text="0" textFill="WHITE" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </GridPane>
+         </children></AnchorPane>
+      <AnchorPane fx:id="heavy11" layoutX="1016.0" layoutY="31.0" onDragDetected="#handleButtonAction" prefHeight="210.0" prefWidth="302.0" style="-fx-background-color: #1e163b; -fx-background-radius: 10; -fx-border-color: #3b335c; -fx-border-radius: 5; -fx-border-width: 5;">
+         <children>
+            <TabPane layoutX="14.0" layoutY="23.0" prefHeight="182.0" prefWidth="276.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Notes">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="154.0" prefWidth="276.0">
+                           <children>
+                              <ListView fx:id="notes" prefHeight="117.0" prefWidth="276.0" />
+                              <TextField fx:id="noteGet" layoutX="-4.0" layoutY="120.0" prefHeight="25.0" prefWidth="246.0" />
+                              <ImageView fx:id="noteSend" fitHeight="20.0" fitWidth="20.0" layoutX="251.0" layoutY="125.0" onMousePressed="#addNote" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../data/images/send.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Special Notes">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="80.0" prefWidth="276.0">
+                           <children>
+                              <ListView fx:id="specialNotes" prefHeight="117.0" prefWidth="276.0" />
+                              <TextField fx:id="specialNoteGet" layoutX="-4.0" layoutY="120.0" prefHeight="25.0" prefWidth="246.0" />
+                              <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="251.0" layoutY="125.0" onMousePressed="#addSpecialNote" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../data/images/send.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="821.0" layoutY="31.0" prefHeight="410.0" prefWidth="191.0" style="-fx-background-color: #1e163b; -fx-background-radius: 10; -fx-border-color: #3b335c; -fx-border-radius: 5; -fx-border-width: 5;">
+         <children>
+            <ListView fx:id="saveList" layoutX="14.0" layoutY="39.0" onKeyPressed="#handleDelete" prefHeight="356.0" prefWidth="164.0" />
+            <Label layoutX="16.0" layoutY="14.0" text="Saved Items" textFill="#fffbfb" />
+         </children></AnchorPane>
+    <AnchorPane fx:id="kinetic" layoutX="357.0" layoutY="103.0" onDragDetected="#handleButtonAction" prefHeight="336.0" prefWidth="460.0" style="-fx-background-color: #1e163b; -fx-border-color: #3b335c; -fx-border-width: 5; -fx-background-radius: 10; -fx-border-width: 5; -fx-border-radius: 5;">
+         <children>
+            <GridPane layoutY="1.0" prefHeight="314.0" prefWidth="446.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <padding>
+                  <Insets bottom="80.0" left="20.0" right="20.0" top="10.0" />
+               </padding>
+               <children>
+                  <ImageView fx:id="austringer" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftHandCannon" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/2f8c0b28a374749c19e3f90e5a69f371.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="pibanad" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftHandCannon" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/91ca86b2cb3da4b0b4bc0eff77aae522.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="hardtruths" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftSmg" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/2a542e897c0689b8ea9a1bcaa815f24f.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="tracklesswaste" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftSmg" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/79fe455dd172f8e56b93e971adbf3132.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="dreadedventure" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftSniper" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/08bedfe45785cf071f22f128a3b10ed6.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="smugglersword" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftSideArm" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/69fbf3b40b8fb6760c078d422c26146c.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="imperialdecree" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftShotGun" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/b64923bae9ebf4785ec888f7c4b95213.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="parcelofstardust" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftShotGun" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/92ede747eb53ba1552761b6efde54839.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="dustrockblues" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftShotGun" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/4b068eddf020f2f272d83998f210e33b.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+    <AnchorPane fx:id="energy" layoutX="357.0" layoutY="103.0" onDragDetected="#handleButtonAction" prefHeight="336.0" prefWidth="460.0" style="-fx-background-color: #1e163b; -fx-background-radius: 10; -fx-border-radius: 5; -fx-border-width: 5; -fx-border-color: #3b335c;">
+         <children>
+            <GridPane layoutX="3.0" layoutY="4.0" prefHeight="313.0" prefWidth="443.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fx:id="trust" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftEHandCannon" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/09d614a6136d68995331620f1e208293.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="wakingvigil" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftEHandCannon" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/4714cdb1cbe8054afe541aace1abb9d1.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="theepicurean" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftEFusion" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/da8107405a56d6e10b0612d5c5fe7440.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="proeliumfr3" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftEFusion" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/ecce6ce0eb045afaf76d5494edecebbe.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="erentilfr4" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftEFusion" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/a54b9d49269f6bc59a1f79622d247af9.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="mainingredient" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftEFusion" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/b0fe53213ec8698ed6e3308df5030a1e.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="drang" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftESideArm" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/682960ff3c1cb34f439c08ebfb38db68.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="lastdance" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftESideArm" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/e1ad2683c69e93c1e3cf9f41f98858e6.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="anonymousautumn" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftESideArm" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/a33d4e17977cb5b47499709213a19e35.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="calusminitool" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftESmg" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/982d64221a581063992ddc9aa6c32a85.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="badreputation" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftESmg" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/cf7686ea1020e77ddec4c222eb793617.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="beloved" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftESniper" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/a804c23a5ad568efe4da68911bacd263.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="twilightoath" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftESniper" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/6f9a8cf53dbf5085375552260f5ee2fd.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="fatecriesfoul" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftESniper" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/b7df307c3eb9f4638ec102f1640fe33a.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="badlander" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftEShotGun" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/485f97f5a08c48161dcceda89fed1651.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </GridPane>
+         </children>
+    </AnchorPane>
+    <AnchorPane fx:id="heavy" layoutX="357.0" layoutY="103.0" onDragDetected="#handleButtonAction" prefHeight="337.0" prefWidth="460.0" style="-fx-background-color: #1e163b; -fx-background-radius: 10; -fx-border-radius: 5; -fx-border-width: 5; -fx-border-color: #3b335c;">
+         <children>
+            <GridPane layoutX="3.0" layoutY="1.0" prefHeight="314.0" prefWidth="206.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fx:id="fixedodds" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftMachinegun" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/64f8f783ffec48fa584b32bbc373cf2a.jpg" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fx:id="badomens" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftRocket" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/d7a9848f2de9f598fe8aae242937a5d3.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="sleepless" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftRocket" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/695c080677c65b29cc9df802236ceed5.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="zenobiad" fitHeight="58.0" fitWidth="58.0" onMousePressed="#handleCraftRocket" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                     <image>
+                        <Image url="https://www.bungie.net/common/destiny2_content/icons/b390cac46aea226353e07e07f6cc6f2d.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+               <padding>
+                  <Insets bottom="80.0" left="20.0" right="20.0" top="10.0" />
+               </padding>
+            </GridPane>
+         </children>
+      </AnchorPane>
+      <Label layoutY="-1.0" prefHeight="27.0" prefWidth="72.0" style="-fx-background-color: #1e163b; -fx-background-radius: 5;" text="Chalice.io" textAlignment="CENTER" textFill="WHITE">
+         <padding>
+            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+         </padding>
+      </Label>
+</children>
+</AnchorPane>

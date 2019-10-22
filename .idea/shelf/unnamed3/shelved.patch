@@ -1,0 +1,172 @@
+Index: src/model/Runes/Blue/BlueRune.java
+===================================================================
+--- src/model/Runes/Blue/BlueRune.java	(revision 51b413d733854f2555b945de5d0f66df10046e4b)
++++ src/model/Runes/Blue/BlueRune.java	(revision 51b413d733854f2555b945de5d0f66df10046e4b)
+@@ -1,8 +0,0 @@
+-package model.Runes.Blue;
+-
+-public class BlueRune {
+-    public static final String Wealth = "Wealth";
+-    public static final String Excess = "Excess";
+-    public static final String Pleasure = "Pleasure";
+-    public static final String Any = "Blue";
+-}
+Index: src/model/Runes/Green/GreenRune.java
+===================================================================
+--- src/model/Runes/Green/GreenRune.java	(revision 51b413d733854f2555b945de5d0f66df10046e4b)
++++ src/model/Runes/Green/GreenRune.java	(revision 51b413d733854f2555b945de5d0f66df10046e4b)
+@@ -1,9 +0,0 @@
+-package model.Runes.Green;
+-
+-public class GreenRune {
+-    public static final String War = "War";
+-    public static final String Desire = "Desire";
+-    public static final String Pride = "Pride";
+-    public static final String Any = "Green";
+-}
+-
+Index: src/model/Runes/Purple/PurpleRune.java
+===================================================================
+--- src/model/Runes/Purple/PurpleRune.java	(revision 51b413d733854f2555b945de5d0f66df10046e4b)
++++ src/model/Runes/Purple/PurpleRune.java	(revision 51b413d733854f2555b945de5d0f66df10046e4b)
+@@ -1,8 +0,0 @@
+-package model.Runes.Purple;
+-
+-public class PurpleRune {
+-    public static final String Joy = "Joy";
+-    public static final String Beast = "Beast";
+-    public static final String Jubilation = "Jubilation";
+-    public static final String Any = "Purple";
+-}
+Index: src/model/Runes/Red/RedRune.java
+===================================================================
+--- src/model/Runes/Red/RedRune.java	(revision 51b413d733854f2555b945de5d0f66df10046e4b)
++++ src/model/Runes/Red/RedRune.java	(revision 51b413d733854f2555b945de5d0f66df10046e4b)
+@@ -1,8 +0,0 @@
+-package model.Runes.Red;
+-
+-public class RedRune {
+-    public static final String Cunning = "Cunning";
+-    public static final String Gluttony = "Gluttony";
+-    public static final String Ambition = "Ambition";
+-    public static final String Any = "Red";
+-}
+Index: src/controller/WeaponKineticController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package controller;\n\nimport exceptions.*;\nimport model.Runes.Runes;\nimport model.Weapons.Kinetic.Kinetic;\n\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class WeaponKineticController {\n    private Kinetic kinetic;\n\n    public WeaponKineticController() {\n        kinetic = new Kinetic();\n    }\n\n    public List<String> getListOfKeysHandCannons() {\n        return new ArrayList<String>(kinetic.getHandCannons().keySet());\n    }\n\n    public List<String> getListOfKeysSnipers() {\n        return new ArrayList<String>(kinetic.getSnipers().keySet());\n    }\n\n    public List<String> getListOfKeysShotguns() {\n        return new ArrayList<String>(kinetic.getShotGuns().keySet());\n    }\n\n    public List<String> getListOfKeysSideArms() {\n        return new ArrayList<String>(kinetic.getSideArms().keySet());\n    }\n\n    public List<String> getListOfSMGs () {\n        return new ArrayList<String>(kinetic.getSMGs().keySet());\n    }\n\n    public Runes getHandCannon(String item) throws WeaponNotFoundException {\n        return checkIfFound(kinetic.selectHandCannon(item), \"handcannon\");\n    }\n\n    public Runes getSniper(String item) throws WeaponNotFoundException {\n        return checkIfFound(kinetic.selectSniper(item), \"sniper\");\n    }\n\n    public Runes getSideArm(String item) throws WeaponNotFoundException {\n        return checkIfFound(kinetic.selectSideArm(item), \"sidearm\");\n    }\n\n    public Runes getShotGun(String item) throws WeaponNotFoundException {\n        return checkIfFound(kinetic.selectShotGun(item), \"shotgun\");\n    }\n\n    public Runes getSMG(String item) throws WeaponNotFoundException {\n        return checkIfFound(kinetic.selectSubMachineGun(item), \"smg\");\n    }\n\n    private Runes checkIfFound(Runes item, String type) throws WeaponNotFoundException {\n        if(item == null) {\n            if(type.equals(\"smg\")) {\n                throw new SMGNotFound();\n            } else if(type.equals(\"handcannon\")) {\n                throw new HandCannonNotFound();\n            } else if(type.equals(\"sniper\")) {\n                throw new SniperNotFound();\n            } else if(type.equals(\"shotgun\")) {\n                throw new ShotgunNotFound();\n            } else if(type.equals(\"sidearm\")) {\n                throw new SideArmNotFound();\n            }\n        }\n        return item;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/controller/WeaponKineticController.java	(revision 51b413d733854f2555b945de5d0f66df10046e4b)
++++ src/controller/WeaponKineticController.java	(date 1565194951000)
+@@ -14,25 +14,6 @@
+         kinetic = new Kinetic();
+     }
+ 
+-    public List<String> getListOfKeysHandCannons() {
+-        return new ArrayList<String>(kinetic.getHandCannons().keySet());
+-    }
+-
+-    public List<String> getListOfKeysSnipers() {
+-        return new ArrayList<String>(kinetic.getSnipers().keySet());
+-    }
+-
+-    public List<String> getListOfKeysShotguns() {
+-        return new ArrayList<String>(kinetic.getShotGuns().keySet());
+-    }
+-
+-    public List<String> getListOfKeysSideArms() {
+-        return new ArrayList<String>(kinetic.getSideArms().keySet());
+-    }
+-
+-    public List<String> getListOfSMGs () {
+-        return new ArrayList<String>(kinetic.getSMGs().keySet());
+-    }
+ 
+     public Runes getHandCannon(String item) throws WeaponNotFoundException {
+         return checkIfFound(kinetic.selectHandCannon(item), "handcannon");
+Index: test/tests/ControllerTests/KineticControllerTestSet.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package tests.ControllerTests;\n\nimport controller.WeaponKineticController;\nimport exceptions.WeaponNotFoundException;\nimport org.junit.jupiter.api.BeforeEach;\nimport org.junit.jupiter.api.Test;\n\nimport static org.junit.jupiter.api.Assertions.assertEquals;\n\npublic class KineticControllerTestSet {\n    private WeaponKineticController wkc;\n\n    @BeforeEach\n    void beforeEachTest() {\n        wkc = new WeaponKineticController();\n    }\n\n    @Test\n    void testGetHC(){\n        assertEquals(2, wkc.getListOfKeysHandCannons().size());\n    }\n\n    @Test\n    void testGetSn(){\n        assertEquals(2, wkc.getListOfKeysSnipers().size());\n    }\n\n    @Test\n    void testGetSh(){\n        assertEquals(3, wkc.getListOfKeysShotguns().size());\n    }\n\n    @Test\n    void testGetSMG(){\n        assertEquals(2, wkc.getListOfSMGs().size());\n    }\n\n    @Test\n    void testGetSd(){\n        assertEquals(1, wkc.getListOfKeysSideArms().size());\n    }\n\n    @Test\n    void testGetSHC() throws WeaponNotFoundException {\n        assertEquals(\"Austringer\", wkc.getHandCannon(\"austringer\").itemName);\n    }\n\n    @Test\n    void testGetSSn() throws WeaponNotFoundException {\n        assertEquals(\"Dreaded Venture\", wkc.getSniper(\"dreadedventure\").itemName);\n    }\n\n    @Test\n    void testGetSSh() throws WeaponNotFoundException {\n        assertEquals(\"Dust Rock Blues\", wkc.getShotGun(\"dustrockblues\").itemName);\n    }\n\n    @Test\n    void testGetSSMG() throws WeaponNotFoundException {\n        assertEquals(\"Hard Truths\", wkc.getSMG(\"hardtruths\").itemName);\n    }\n\n    @Test\n    void testGetSSd() throws WeaponNotFoundException {\n        assertEquals(\"Smugglers Word\", wkc.getSideArm(\"smugglersword\").itemName);\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- test/tests/ControllerTests/KineticControllerTestSet.java	(revision 51b413d733854f2555b945de5d0f66df10046e4b)
++++ test/tests/ControllerTests/KineticControllerTestSet.java	(date 1565194985000)
+@@ -15,31 +15,6 @@
+         wkc = new WeaponKineticController();
+     }
+ 
+-    @Test
+-    void testGetHC(){
+-        assertEquals(2, wkc.getListOfKeysHandCannons().size());
+-    }
+-
+-    @Test
+-    void testGetSn(){
+-        assertEquals(2, wkc.getListOfKeysSnipers().size());
+-    }
+-
+-    @Test
+-    void testGetSh(){
+-        assertEquals(3, wkc.getListOfKeysShotguns().size());
+-    }
+-
+-    @Test
+-    void testGetSMG(){
+-        assertEquals(2, wkc.getListOfSMGs().size());
+-    }
+-
+-    @Test
+-    void testGetSd(){
+-        assertEquals(1, wkc.getListOfKeysSideArms().size());
+-    }
+-
+     @Test
+     void testGetSHC() throws WeaponNotFoundException {
+         assertEquals("Austringer", wkc.getHandCannon("austringer").itemName);
+Index: test/tests/ModelTests/KineticTestSet.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package tests.ModelTests;\n\npublic class KineticTestSet {\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- test/tests/ModelTests/KineticTestSet.java	(revision 51b413d733854f2555b945de5d0f66df10046e4b)
++++ test/tests/ModelTests/KineticTestSet.java	(date 1565195323000)
+@@ -1,4 +1,21 @@
+ package tests.ModelTests;
+ 
++import model.Weapons.Kinetic.Kinetic;
++import org.junit.jupiter.api.BeforeEach;
++import org.junit.jupiter.api.Test;
++
++import static org.junit.jupiter.api.Assertions.assertEquals;
++
+ public class KineticTestSet {
++    private Kinetic k;
++
++
++    @BeforeEach
++    public void load() {
++        k = new Kinetic();
++    }
++
++    @Test
++    public void testGetSniper() {
++    }
+ }
+Index: test/tests/ModelTests/EnergyTestSet.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- test/tests/ModelTests/EnergyTestSet.java	(date 1565194982000)
++++ test/tests/ModelTests/EnergyTestSet.java	(date 1565194982000)
+@@ -0,0 +1,4 @@
++package tests.ModelTests;
++
++public class EnergyTestSet {
++}

@@ -1,0 +1,93 @@
+Index: src/controller/SaveController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package controller;\n\nimport model.Runes.Runes;\nimport model.Save.Save;\n\npublic class SaveController {\n    private Save saveList;\n\n    public SaveController(Save saveList) {\n        this.saveList = saveList;\n    }\n\n    //MODIFIES: this\n    //REQUIRES: list > 1\n    //EFFECTS: removes a element from specified index\n    public void remove(int index) {\n        saveList.remove(index);\n    }\n\n    //MODIFIES: this\n    //EFFECTS: adds an element to the list\n    public void saveItem(Runes item) { saveList.addSavedCombo(item); }\n\n    //EFFECTS: returns true if list is empty, false otherwise\n    public boolean emptyList() {\n        return saveList.size() == 0;\n    }\n\n    //MODIFIES: this\n    //EFFECTS: adds elements to list\n    public void loadRunes(Runes[] items) {\n        for (Runes item : items) {\n            saveList.addSavedCombo(item);\n        }\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/controller/SaveController.java	(revision 91b721bc13db661b2a7fce9ea7ec254fef6f6b39)
++++ src/controller/SaveController.java	(date 1564674879000)
+@@ -14,7 +14,9 @@
+     //REQUIRES: list > 1
+     //EFFECTS: removes a element from specified index
+     public void remove(int index) {
+-        saveList.remove(index);
++        if(!saveList.isEmpty() && index <= saveList.size() - 1 ) {
++            saveList.remove(index);
++        }
+     }
+ 
+     //MODIFIES: this
+@@ -29,9 +31,12 @@
+     //MODIFIES: this
+     //EFFECTS: adds elements to list
+     public void loadRunes(Runes[] items) {
+-        for (Runes item : items) {
+-            saveList.addSavedCombo(item);
++        if(items == null) {
++
++        } else {
++            for (Runes item : items) {
++                saveList.addSavedCombo(item);
++            }
+         }
+     }
+-
+ }
+Index: src/view/PrinterView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package view;\n\nimport model.Runes.Runes;\n\nimport java.util.List;\n\npublic class PrinterView {\n    public static void printRunes(Runes combo) {\n        System.out.println(\"\\nRunes:\");\n        System.out.println(combo.type);\n        System.out.println(combo.classification + \"\\n\");\n    }\n\n    public static void printMenu() {\n        System.out.println(\"\\nPlease select a item:\");\n        System.out.println(\"+------------------+\");\n        System.out.println(\"|   Weapon Craft   |\");\n        System.out.println(\"+------------------+\");\n        System.out.println(\"|    Armor Craft   |\");\n        System.out.println(\"+------------------+\");\n        System.out.println(\"|    View Saved    |\");\n        System.out.println(\"+------------------+\");\n        System.out.println(\"|   Remove Saved   |\");\n        System.out.println(\"+------------------+\");\n        System.out.println(\"| Manage Character |\");\n        System.out.println(\"+------------------+\");\n        System.out.println(\"|       Notes      |\");\n        System.out.println(\"+------------------+\");\n        System.out.println(\"Or type, 'QUIT' to exit\\n\");\n        System.out.println(\"Or type, 'QUIT' to exit\\n\");\n    }\n\n    public static void printSelectWeaponType(List<String> weaponTypes) {\n        System.out.println(\"Please select a weapon type:\");\n        for (String weaponType : weaponTypes) {\n            System.out.println(\"+------------------+\");\n            System.out.println(weaponType);\n        }\n        System.out.println(\"+------------------+\\n\");\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/view/PrinterView.java	(revision 91b721bc13db661b2a7fce9ea7ec254fef6f6b39)
++++ src/view/PrinterView.java	(date 1564674647000)
+@@ -27,7 +27,6 @@
+         System.out.println("|       Notes      |");
+         System.out.println("+------------------+");
+         System.out.println("Or type, 'QUIT' to exit\n");
+-        System.out.println("Or type, 'QUIT' to exit\n");
+     }
+ 
+     public static void printSelectWeaponType(List<String> weaponTypes) {
+Index: src/view/View.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package view;\n\nimport exceptions.weaponExceptions.NotYetReadyException;\nimport exceptions.weaponExceptions.WeaponNotFoundException;\nimport exceptions.weaponExceptions.WeaponSlotTypeException;\nimport model.Runes.Runes;\nimport model.Save.Save;\nimport utils.ReadJSON;\nimport utils.SaveJSON;\n\nimport java.io.FileNotFoundException;\nimport java.io.IOException;\n\npublic class View {\n    private static final String ITEM_TYPE_W = \"weapon\";\n    private static final String ITEM_TYPE_A = \"armor\";\n    private static final String EXIT_CRAFTING = \"quit\";\n    private static final String VIEW_SAVED = \"viewsaved\";\n    private static final String REMOVE_SAVED = \"removesaved\";\n    private static final String MANAGE_CHARACTER = \"managecharacter\";\n    private static final String NOTES = \"notes\";\n\n    private Save saveItems;\n    private SaveView saveView;\n    private ListView notes;\n\n    public View() {\n        saveView = new SaveView();\n        notes = new ListView();\n    }\n\n    //EFFECTS: Takes user item for item to craft and calls\n    //         specified method for item crafting or launches\n    //         item manager\n    public void Craft() {\n        try {\n            ReadJSON fileRead = new ReadJSON();\n            Runes[] list = fileRead.read(\"items.json\");\n            saveView.getSaveController().loadRunes(list);\n\n            while (true) {\n                PrinterView.printMenu();\n                String type = ScannerView.getKey();\n\n                if(type.equals(ITEM_TYPE_W)) {\n                    craftWeapon();\n                }\n                if(type.equals(ITEM_TYPE_A)) {\n                    craftArmor();\n                }\n                if (type.equals(VIEW_SAVED)) {\n                    saveView.printSaved();\n                }\n                if (type.equals(REMOVE_SAVED)) {\n                    saveView.removeSaved();\n                }\n                if (type.equals(MANAGE_CHARACTER)) {\n                    manageChar();\n                }\n                if (type.equals(NOTES)) {\n                    manageNotes();\n                }\n                if(type.equals(EXIT_CRAFTING)) {\n                    SaveJSON fileSave = new SaveJSON();\n                    fileSave.save(saveItems, \"items.json\");\n                    break;\n                }\n            }\n        } catch (IOException e) {\n            System.out.println(\"Sorry could not find your save file: \" + e.getMessage());\n        } finally {\n            System.out.println(\"Exiting Crafting...\");\n        }\n    }\n\n    private void craftWeapon() {\n        try {\n            Runes item = WeaponView.craft();\n            PrinterView.printRunes(item);\n            saveView.saveItem(item);\n        } catch (WeaponNotFoundException | WeaponSlotTypeException e) {\n            System.out.println(\"\\n\" + \"Error: \" +  e.getMessage());\n        } catch (NotYetReadyException e) {\n            System.out.println(\"\\n\"+ e.getMessage());\n        }\n    }\n\n    private void craftArmor() {\n        System.out.println(\"Coming Soon...\\n\");\n    }\n\n    private void manageChar() throws FileNotFoundException {\n        new CharManageView().Manage();\n    }\n\n    private void manageNotes() {\n        notes.manage();\n    }\n\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/view/View.java	(revision 91b721bc13db661b2a7fce9ea7ec254fef6f6b39)
++++ src/view/View.java	(date 1564674972000)
+@@ -20,7 +20,6 @@
+     private static final String MANAGE_CHARACTER = "managecharacter";
+     private static final String NOTES = "notes";
+ 
+-    private Save saveItems;
+     private SaveView saveView;
+     private ListView notes;
+ 
+@@ -62,7 +61,7 @@
+                 }
+                 if(type.equals(EXIT_CRAFTING)) {
+                     SaveJSON fileSave = new SaveJSON();
+-                    fileSave.save(saveItems, "items.json");
++                    fileSave.save(saveView.getSaveItems(), "items.json");
+                     break;
+                 }
+             }
+Index: items.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>null
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- items.json	(revision 91b721bc13db661b2a7fce9ea7ec254fef6f6b39)
++++ items.json	(date 1564675042000)
+@@ -1,1 +1,1 @@
+-null
+\ No newline at end of file
++[{"itemName":"Trust","type":"Desire","classification":"Purple","masterwork":""},{"itemName":"Trust","type":"Desire","classification":"Purple","masterwork":""}]
+\ No newline at end of file
